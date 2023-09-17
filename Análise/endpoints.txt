@@ -1,0 +1,41 @@
+-- Endpoints tb_produto --
+
+(1) CADASTRAR PRODUTO
+    VERBO: POST       CAMINHO: http://localhost:5000/produto
+    
+    {
+        "categoria": 1,
+        "nome": "Turbina Chevette",
+        "marca": "Bagio",
+        "modelo": "AAA100",
+        "disponivel": true,
+        "promocao": "de 19/08 à 20/08",
+        "valor": "1900.00",
+        "detalhes": "Turbina para Chevette 1.0",
+        "quantidade": 2
+    }   
+
+(2) LISTAR TODOS OS PRODUTOS
+    VERBO: GET        CAMINHO: http://localhost:5000/produto
+
+(3) LISTAR PRODUTO POR NOME, CATEGORIA E MARCA
+    VERBO: GET        CAMINHO: http://localhost:5000/produto/busca?nome=
+                               http://localhost:5000/produto/busca?categoria=
+                               http://localhost:5000/produto/busca?marca=
+
+(4) ALTERAR PRODUTOS
+    VERBO: PRODUTO     CAMINHO: http://localhost:5000/produto/:id     
+
+    {
+        "categoria": 2,
+        "nome": "Turbina Chevette",
+        "marca": "Bagio",
+        "modelo": "BBB200",
+        "disponivel": false,
+        "promocao": "de 19/08 à 20/08",
+        "valor": "1980.00",
+        "detalhes": "Turbina para Chevette 1.0",
+        "quantidade": 1
+    }
+
+

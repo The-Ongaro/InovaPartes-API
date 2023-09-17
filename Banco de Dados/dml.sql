@@ -68,22 +68,22 @@ INSERT INTO tb_img_produto (id_produto, ds_img)
 				VALUES (1, 'storage/capaProduto/1234568kjhfd7dr84f');
                 
 -- LISTAR IMAGENS
-SELECT id_img_produto as imgID,
-	   id_produto as produtoID,
-       ds_img as Imagem
+SELECT id_img_produto 	as imgID,
+	   id_produto 		as produtoID,
+       ds_img 			as Imagem
 		FROM tb_img_produto;
         
 -- LISTAR IMAGEM COM INFO DO PRODUTO
-SELECT nm_produto as Nome,
-	   ds_marca as Marca,
-       ds_modelo as Modelo,
-       bt_disponivel as Disponivel,
-       ds_promocao	as Promocao,
-       bt_disponivel as Disponivel,
-       vl_valor as Valor,
-       ds_detalhes as Detalhes,
-       nr_quantidade as Quantidade,
-       ds_img as Imgem
+SELECT nm_produto 		as Nome,
+	   ds_marca 		as Marca,
+       ds_modelo 		as Modelo,
+       bt_disponivel 	as Disponivel,
+       ds_promocao		as Promocao,
+       bt_disponivel 	as Disponivel,
+       vl_valor 		as Valor,
+       ds_detalhes 		as Detalhes,
+       nr_quantidade 	as Quantidade,
+       ds_img 			as Imgem
 		FROM tb_img_produto
 			INNER JOIN tb_produto ON tb_produto.id_produto = tb_img_produto.id_produto
 				WHERE tb_produto.id_produto = 1;
