@@ -10,9 +10,10 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+server.use('/storage/imgProdutos', express.static('storage/imgProdutos'));
+server.use('/storage/usuarioPerfil', express.static('storage/usuarioPerfil'));
+
 server.use(produtoController);
 server.use(usuarioController);
-
-server.use('/storage/imgProdutos', express.static('storage/imgProdutos'));
 
 server.listen(process.env.PORT, () => console.log(`API online na porta ${process.env.PORT}`));

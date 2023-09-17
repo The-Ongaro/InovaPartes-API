@@ -1,8 +1,10 @@
-import { alterarInfoCliente, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
+import { alterarImgCliente, alterarInfoCliente, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
 
 import { Router } from "express";
+import multer from 'multer';
 
 const server = Router();
+const upload = multer({dest: 'storage/usuarioPerfil'});
 
 server.post('/usuario', async (req, resp) => {
     try {
@@ -12,7 +14,7 @@ server.post('/usuario', async (req, resp) => {
             throw new Error('Nome inválido.');
 
         const buscarCpf = await buscarPorNomeCpf(cadastrar.cpf)
-        if(buscarCpf.length > 0)
+        if(buscarCpf.length > 0 || cadastrar.cpf == undefined)
             throw new Error('CPF já cadastrado.');
 
         if(!cadastrar.telefone)
@@ -26,6 +28,23 @@ server.post('/usuario', async (req, resp) => {
 
         const usuarioCadastrado = await cadastroCliente(cadastrar);
         resp.send(usuarioCadastrado);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
+server.put('/usuario/:id/perfil', upload.single('perfil'), async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const imagem = req.file.path;
+
+        const resposta = await alterarImgCliente(imagem, id);
+        if(resposta != 1)
+            throw new Error('A imagem não pode ser alterada.');
+
+        resp.status(204).send();
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -83,7 +102,7 @@ server.put('/usuario/:id', async (req, resp) => {
             throw new Error('Nome inválido.');
 
         const buscarCpf = await buscarPorNomeCpf(cliente.cpf)
-        if(buscarCpf.length > 0)
+        if(buscarCpf.length > 0 || cliente.cpf == undefined)
             throw new Error('CPF já cadastrado.');
 
         if(!cliente.telefone)
@@ -123,8 +142,6 @@ server.delete('/usuario/:id', async (req, resp) => {
         });
     }
 })
-
-
 
 
 export default server;

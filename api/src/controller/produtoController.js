@@ -1,4 +1,4 @@
-import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarImg, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
+import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarImg, listarImgInfo, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
 
 import Router from 'express';
 import multer from 'multer';
@@ -158,16 +158,13 @@ server.post('/categoria', async (req, resp) => {
     }
 })
 
-server.post('/imagem/:id', upload.single('capa'), async (req, resp) => {
+
+server.post('/imagem', async (req, resp) => {
     try {
-        const {id} = req.params;
-        const imagem = req.file.path;
-        const resposta = await inserirImg(imagem, id);
-
-        if(resposta != 1)
-            throw new Error('A imagem não pode ser salva.');
-
-        resp.status(204).send();
+        const imagem = req.body;
+        const resposta = await inserirImg(imagem);
+        
+        resp.send(resposta);
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -179,8 +176,8 @@ server.put('/imagem/:id', upload.single('capa'), async (req, resp) => {
     try {
         const {id} = req.params;
         const img = req.file.path;
-        const resposta = await alterarImg(id, img);
 
+        const resposta = await alterarImg(img, id);
         if(resposta != 1)
             throw new Error('A imagem não pode ser salva.');
 
@@ -199,6 +196,18 @@ server.get('/imagem', async (req, resp) => {
     } catch (err) {
         resp.status(400).send({
             error: err.message
+        });
+    }
+})
+
+server.get('/imagem/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const dados = await listarImgInfo(id);
+        resp.send(dados);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
         });
     }
 })

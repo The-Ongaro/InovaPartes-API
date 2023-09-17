@@ -83,7 +83,7 @@ SELECT nm_produto 		as Nome,
        vl_valor 		as Valor,
        ds_detalhes 		as Detalhes,
        nr_quantidade 	as Quantidade,
-       ds_img 			as Imgem
+       ds_img 			as Imagem
 		FROM tb_img_produto
 			INNER JOIN tb_produto ON tb_produto.id_produto = tb_img_produto.id_produto
 				WHERE tb_produto.id_produto = 1;
@@ -128,6 +128,11 @@ SELECT id_adm 	as id,
 -- ADICIONAR CLIENTE
 INSERT INTO tb_cliente (nm_cliente, ds_cpf, ds_telefone, ds_email, ds_senha, img_cliente)
 				VALUES ('Luiz Henrique Dias Ananias', '123.123.123-67', '(11) 94000-0000', 'ananias@gmailcom', 'abc@123', '');
+
+-- ALTERAR IMAGEM CLIENTE
+UPDATE tb_cliente
+	SET img_cliente = ""
+		WHERE id_cliente = 1;
                 
 -- LISTAR TODOS CLIENTES
 SELECT nm_cliente as Cliente,

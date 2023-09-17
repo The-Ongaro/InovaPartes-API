@@ -112,18 +112,18 @@ export async function inserirCategoria(categoria) {
     return categoria;
 }
 
-// ARRUMAR
+
 export async function inserirImg(imagem) {
     const comando = 
     `INSERT INTO tb_img_produto (id_produto, ds_img)
                     VALUES (?, ?)`
     
-    const [resposta] = await conexao.query(comando, [imagem.id, imagem.img]);
+    const [resposta] = await conexao.query(comando, [imagem.produto, imagem.img]);
     imagem.id = resposta.insertId;
     return imagem;
 }
 
-export async function alterarImg(id, imagem) {
+export async function alterarImg(imagem, id) {
     const comando = 
     `UPDATE tb_img_produto
         SET ds_img = ?
@@ -141,5 +141,25 @@ export async function listarImg() {
             FROM tb_img_produto`
 
     const [resposta] = await conexao.query(comando);
+    return resposta;
+}
+
+export async function listarImgInfo(id) {
+    const comando =
+    `SELECT nm_produto 		as Nome,
+            ds_marca 		as Marca,
+            ds_modelo 		as Modelo,
+            bt_disponivel 	as Disponivel,
+            ds_promocao		as Promocao,
+            bt_disponivel 	as Disponivel,
+            vl_valor 		as Valor,
+            ds_detalhes 	as Detalhes,
+            nr_quantidade 	as Quantidade,
+            ds_img 			as Imagem
+            FROM tb_img_produto
+                INNER JOIN tb_produto ON tb_produto.id_produto = tb_img_produto.id_produto
+                    WHERE tb_produto.id_produto = ?`
+    
+    const [resposta] = await conexao.query(comando, [id]);
     return resposta;
 }

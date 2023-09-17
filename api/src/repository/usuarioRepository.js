@@ -10,6 +10,16 @@ export async function cadastroCliente(cliente) {
     return cliente;
 }
 
+export async function alterarImgCliente(imagem, id) {
+    const comando = 
+    `UPDATE tb_cliente
+        SET img_cliente = ?
+            WHERE id_cliente = ?`
+
+    const [resposta] = await conexao.query(comando, [imagem, id]);
+    return resposta.affectedRows;
+}
+
 export async function loginCliente(email, senha) {
     const comando = 
     `SELECT id_cliente 	as Id,
@@ -71,5 +81,5 @@ export async function deletarCliente(id) {
 	    WHERE id_cliente = ?`
 
     const [resposta] = await conexao.query(comando, [id]);
-    return resposta;
+    return resposta.affectedRows;
 }
