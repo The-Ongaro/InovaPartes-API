@@ -1,0 +1,88 @@
+-- ENDPOINTS DA tb_produto --
+
+(1) CADASTRAR PRODUTO
+    VERBO: POST       CAMINHO: http://localhost:5000/produto
+    
+    {
+        "categoria": 1,
+        "nome": "Turbina Chevette",
+        "marca": "Bagio",
+        "modelo": "AAA100",
+        "disponivel": true,
+        "promocao": "de 19/08 à 20/08",
+        "valor": "1900.00",
+        "detalhes": "Turbina para Chevette 1.0",
+        "quantidade": 2
+    }   
+
+(2) LISTAR TODOS OS PRODUTOS
+    VERBO: GET        CAMINHO: http://localhost:5000/produto
+
+(3) LISTAR PRODUTO POR NOME, CATEGORIA E MARCA
+    VERBO: GET        CAMINHO: http://localhost:5000/produto/busca?nome=
+                               http://localhost:5000/produto/busca?categoria=
+                               http://localhost:5000/produto/busca?marca=
+
+(4) ALTERAR PRODUTOS
+    VERBO: PRODUTO     CAMINHO: http://localhost:5000/produto/:id     
+
+    {
+        "categoria": 2,
+        "nome": "Turbina Chevette",
+        "marca": "Bagio",
+        "modelo": "BBB200",
+        "disponivel": false,
+        "promocao": "de 19/08 à 20/08",
+        "valor": "1980.00",
+        "detalhes": "Turbina para Chevette 1.0",
+        "quantidade": 1
+    }
+
+(5) DELETAR PRODUTO
+    VERBO: DELETE       CAMINHO: http://localhost:5000/produto/:id
+
+
+-- TABELA CATRGORIA --
+(1) ADICIONAR CATEGORIA
+    VERBO: POST         CAMINHO: http://localhost:5000/categoria
+
+    {
+        "categoria": "Caminhão"
+    }
+
+-- ENDPOINTS DA tb_img_produto --
+-- TABELA IMAGEM DOS PRODUTOS (AQUI É ONDE O FILHO CHORA E A MÃE NÃO VÊ)--
+(1) ADICIONAR IMAGEM
+    VERBO: POST         CAMINHO: http://localhost:5000/imagem
+
+    {
+        "produto": 1, => ID DO PRODUTO
+        "imagem": "" => PASSA VAZIO, ZÉ.
+    }
+
+(2) ALTERAR IMAGEM (PRESTA ATENÇÃO AQUI!)
+    VERBO: put          CAMINHO: http://localhost:5000/imagem/:id => ESSE ID É O id_img_produto QUE VOCÊ CRIOU ANTERIORMENTE.
+    FILES: 'capa'
+
+    SE TIVER DÚVIDA EM COMO ADICIONAR A IMAGEM ME CHAMA, ESTAREI A DISPOSIÇÃO, OU NÃO.
+
+(3) LISTAR AS IMAGENS (NÃO SABIA SE IA QUERER OU NÃO, AI EU FIZ)
+    VERBO: GET          CAMINHO: http://localhost:5000/imagem
+
+(4) LISTAR IMAGEM COM A INFORMAÇÃO DO PRODUTO JUNTO (FAZ O TESTE DE PASSAR ESSE ENDPOINT NA TELA DE INFORMAÇÕES DO PRODUTO)
+    VERBO: GET          CAMINHO: http://localhost:5000/imagem/:id => ID DO PRODUTO QUE DESEJA, MAS A IMAGEM TEM QUE SER ADIONADA ANTES, SE NÃO DA ERRADO.
+
+    E ASSIM RETORNA A BRINCADEIRA:
+    [
+        {
+            "Nome": "FT400",
+            "Marca": "FUELTECH",
+            "Modelo": "EXEMPLOII",
+            "Disponivel": true,
+            "Promocao": "EXEMPLOII",
+            "Valor": "5900.00",
+            "Detalhes": "EXEMPLOII",
+            "Quantidade": 1,
+            "Imagem": "storage\\imgProdutos\\f1534cc3dd8880824e1c348dd78df6c6"
+        }
+]

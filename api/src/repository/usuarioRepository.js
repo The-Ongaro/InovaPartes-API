@@ -5,7 +5,7 @@ export async function cadastroCliente(cliente) {
     `INSERT INTO tb_cliente (nm_cliente, ds_cpf, ds_telefone, ds_email, ds_senha, img_cliente)
                     VALUES (?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await conexao.query(comando, [cliente.nome, cliente.cpf, cliente.telefone, cliente.email, cliente.senha, cliente.img]);
+    const [resposta] = await conexao.query(comando, [cliente.nome, cliente.cpf, cliente.telefone, cliente.email, cliente.senha, cliente.imagem]);
     cliente.id = resposta.insertId;
     return cliente;
 }
@@ -48,11 +48,10 @@ export async function listarclientes() {
 
 export async function buscarPorNomeCpf(nome, cpf) {
     const comando = 
-    `SELECT nm_cliente,
-            ds_cpf,
-            ds_telefone,
-            ds_email,
-            ds_senha
+    `SELECT nm_cliente      as Nome,
+            ds_cpf          as CPF,
+            ds_telefone     as Telefone,
+            ds_email        as Email
                 FROM tb_cliente
                     WHERE nm_cliente LIKE ?
                        OR ds_cpf LIKE ?`
@@ -83,3 +82,14 @@ export async function deletarCliente(id) {
     const [resposta] = await conexao.query(comando, [id]);
     return resposta.affectedRows;
 }
+
+export async function buscarPorCpf(cpf) {
+    const comando =
+    `SELECT ds_cpf
+        FROM tb_cliente
+            WHERE ds_cpf = ?`
+
+    const [resposta] = await conexao.query(comando, [cpf]);
+    return resposta;
+}
+

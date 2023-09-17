@@ -1,0 +1,67 @@
+-- ENDPOINTS DA tb_cliente --
+
+(1) CADASTRO USUARIO 
+    VERBO: POST        CAMINHO: http://localhost:5000/usuario
+
+    {
+        "nome": "Catarina",
+        "cpf": "123.123.123-00",
+        "telefone": "(11) 5921-5000",
+        "email": "catarina@gmail.com",
+        "senha": "abc@321",
+        "imagem": ""
+    }
+
+(2) ALTERAR A IMAGEM DO USUARIO
+    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id/perfil
+    FILES: 'perfil'
+
+(3) LOGIN USUARIO
+    VERBO: POST         CAMINHO: http://localhost:5000/usuario/login
+
+    {
+        "email": "catarina@gmail.com",
+        "senha": "abc@321"
+    }   
+
+    RETORNA:
+
+    [
+        {
+            "Id": 5,
+            "Nome": "Catarina",
+            "Email": "catarina@gmail.com"
+        }
+    ]
+
+(4) LISTAR TODOS OS USUARIOS
+    VERBO: GET          CAMINHO: http://localhost:5000/usuario
+
+(5) BUSCAR USUARIO POR NOME OU CPF
+    VERBO: GET          CAMINHO: http://localhost:5000/usuario/busca?nome=
+                                 http://localhost:5000/usuario/busca?cpf=
+
+    RETORNA:
+    
+    [
+        {
+            "Nome": "Catarina",
+            "CPF": "123.123.123-00",
+            "Telefone": "(11) 5921-5620",
+            "Email": "catarina@gmail.com"
+        }
+    ]
+
+(6) ALTERAR CADASTRO
+    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id
+
+    {
+        "nome": "Maria Alice",
+        "cpf": "123.123.123-00",
+        "telefone": "(11) 5921-5620",
+        "email": "alice@gmail.com",
+        "senha": "abc@321"
+    }
+
+(7) DELETAR USUARIO 
+    VERBO: DELETE       CAMINHO: http://localhost:5000/usuario/:id

@@ -1,0 +1,41 @@
+-- ENDPOINTS DA tb_adm --
+
+(1) CADASTAR ADM 
+    VERBO: POST         CAMINHO: http://localhost:5000/adm 
+    {
+        "nome": "Catarina",
+        "cpf": "123.456.789.00",
+        "email": "catarina@gmail.com",
+        "senha": "mnb@456",
+        "imagem": ""
+    }  
+
+(2) ALTERAR IMAGEM ADM
+    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id/perfil => ID DO ADM.
+    FILES: 'perfil'
+
+(3) ALTERAR CADASTRO ADM
+    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id
+
+    {
+        "nome": "Catarina",
+        "cpf": "123.456.789.00",
+        "email": "catarina@gmail.com",
+        "senha": "mnb@456"  
+    }  
+
+(4) LOGIN ADM
+    VERBO: POST         CAMINHO: http://localhost:5000/adm/login
+
+    {
+        "email": || "cpf":
+        "senha":
+    }           
+
+-- NÃO HAVIA NECESSIDADE, MAS FIZ MESMO ASSIM
+(5) LISTAR TODOS ADM
+    VERBO: GET          CAMINHO: http://localhost:5000/adm             
+
+(6) DELETAR ADM
+    VERBO: DELETE       CAMINHO: http://localhost:5000/adm/:id
+

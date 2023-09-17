@@ -123,6 +123,17 @@ SELECT id_adm 	as id,
 		   WHERE ds_email = '' 
 				OR ds_cpf = '123.123.123-55'
 					AND ds_senha = 'admin@123';
+
+-- LISTAR TODOS ADM
+SELECT id_adm	as id,
+	   nm_adm	as nome,
+	   ds_cpf	as cpf,
+	   ds_email	as email
+	   		FROM tb_adm;
+
+-- DELETAR ADM
+DELETE FROM tb_adm
+		WHERE id_adm = 1;
                     
 -- TABELA CLIENTE -- 
 -- ADICIONAR CLIENTE

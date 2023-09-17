@@ -1,4 +1,4 @@
-import { alterarImgCliente, alterarInfoCliente, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
+import { alterarImgCliente, alterarInfoCliente, buscarPorCpf, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
 
 import { Router } from "express";
 import multer from 'multer';
@@ -13,7 +13,7 @@ server.post('/usuario', async (req, resp) => {
         if(!cadastrar.nome)
             throw new Error('Nome inválido.');
 
-        const buscarCpf = await buscarPorNomeCpf(cadastrar.cpf)
+        const buscarCpf = await buscarPorCpf(cadastrar.cpf)
         if(buscarCpf.length > 0 || cadastrar.cpf == undefined)
             throw new Error('CPF já cadastrado.');
 
@@ -101,7 +101,7 @@ server.put('/usuario/:id', async (req, resp) => {
         if(!cliente.nome)
             throw new Error('Nome inválido.');
 
-        const buscarCpf = await buscarPorNomeCpf(cliente.cpf)
+        const buscarCpf = await buscarPorCpf(cliente.cpf)
         if(buscarCpf.length > 0 || cliente.cpf == undefined)
             throw new Error('CPF já cadastrado.');
 
