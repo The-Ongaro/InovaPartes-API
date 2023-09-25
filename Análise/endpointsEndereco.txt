@@ -1,0 +1,32 @@
+-- ENDPOINTS tb_endereco --
+
+(1) ADICIONAR ENDEREÇO
+    VERBO: POST        CAMINHO: http://localhost:5000/endereco
+
+    {
+        "cliente": 1, => ID DO CLIENTE.
+        "logradouro": "Rua André Pernet",
+        "numCasa": "395A",
+        "complemento": "Casa",
+        "cep": "04890-020",
+        "bairro": "JD. Roschel",
+        "cidade": "São Paulo",
+        "estado": "SP"
+    }  
+
+(2) LISTAR ENDEREÇO + NOME USUARIO 
+    VERBO: GET          CAMINHO: http://localhost:5000/endereco
+
+(3) ALTERAR ENDEREÇO
+    VERBO: PUT          CAMINHO: http://localhost:5000/endereco/:id
+
+    {
+        "logradouro": "Rua André Pernet",
+        "numCasa": "395B",
+        "complemento": "Casa",
+        "cep": "04890-010",
+        "bairro": "JD. Roschel",
+        "cidade": "São Paulo",
+        "estado": "SP"
+    }  
+
