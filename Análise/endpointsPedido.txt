@@ -1,0 +1,13 @@
+-- ENDPOINTS tb_pedido --
+
+(1) CADASTRAR PEDIDOS
+    VERBO: POST             CAMINHO: http://localhost:5000/pedido
+
+    {
+        "produto": 1,
+        "cartao": 1,
+        "endereco": 1,
+        "quantidade": 2,
+        "status": "Enviar"
+    }
+
