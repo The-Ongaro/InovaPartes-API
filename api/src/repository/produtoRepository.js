@@ -163,3 +163,4 @@ export async function listarImgInfo(id) {
     const [resposta] = await conexao.query(comando, [id]);
     return resposta;
 }
+

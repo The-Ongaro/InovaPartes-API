@@ -25,6 +25,7 @@ server.post('/adm', async (req, resp) => {
 
         const adminCadastrado = await cadastrarAdm(cadastrar);
         resp.send(adminCadastrado);
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -42,6 +43,7 @@ server.put('/adm/:id/perfil', upload.single('perfil'),async (req, resp) => {
             throw new Error('A imagem não pode ser salva.');
 
         resp.status(204).send();
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -71,6 +73,7 @@ server.put('/adm/:id', async (req, resp) => {
             throw new Error('Adm não pode ser alterado.');
 
         resp.status(200).send();
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -81,10 +84,14 @@ server.put('/adm/:id', async (req, resp) => {
 
 server.post('/adm/login', async (req, resp) => {
     try {
-        const {email, cpf, senha} = req.body;
-        const resposta = await loginAdm(email, cpf, senha);
+        const {email, senha} = req.body;
+        const resposta = await loginAdm(email, senha);
+
+        if(!resposta)
+            throw new Error('Administrador inválido.');
 
         resp.send(resposta);
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -95,6 +102,10 @@ server.post('/adm/login', async (req, resp) => {
 server.get('/adm', async (req, resp) =>{
     try {
         const dados = await listarAdm();
+
+        if(dados.length === 0)
+            throw new Error('Nenhum administrador cadastrado.');
+
         resp.send(dados);
         
     } catch (err) {
@@ -114,13 +125,12 @@ server.delete('/adm/:id', async (req, resp) => {
             throw new Error('Adm não pode ser deletado.')
 
         resp.status(204).send();
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
         });
     }
 })
-
-
 
 export default server;

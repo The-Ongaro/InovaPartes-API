@@ -10,7 +10,6 @@ export async function cadastrarAdm(admin) {
     return admin;
 }
 
-
 export async function alterarImgAdm(imagem, id) {
     const comando =
     `UPDATE tb_adm
@@ -34,18 +33,17 @@ export async function alterarAdm(id, admin) {
     return resposta.affectedRows;
 }
 
-export async function loginAdm(email, cpf, senha) {
+export async function loginAdm(email, senha) {
     const comando =
     `SELECT id_adm 	as id,
             nm_adm	as nome,
             ds_email as email
                 FROM tb_adm
                     WHERE ds_email = ? 
-                        OR ds_cpf = ?
                             AND ds_senha = ?`
 
-    const [resposta] = await conexao.query(comando, [email, cpf, senha]);
-    return resposta;
+    const [resposta] = await conexao.query(comando, [email, senha]);
+    return resposta[0];
 }
 
 export async function buscarPorCpf(cpf) {

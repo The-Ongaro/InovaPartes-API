@@ -1,4 +1,4 @@
-import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarImg, listarImgInfo, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
+import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarImg, listarImgInfo, listarPorId, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
 
 import Router from 'express';
 import multer from 'multer';
@@ -51,6 +51,9 @@ server.post('/produto', async (req, resp) => {
 server.get('/produto', async (req, resp) => {
     try {
         const dados = await listarProdutos();
+        if(dados.length === 0)
+            throw new Error('Não há produtos cadastrados.');
+
         resp.send(dados);
 
     } catch (err) {
@@ -65,9 +68,9 @@ server.get('/produto/busca', async (req, resp) => {
     try {
         const {nome, categoria, marca} = req.query;
         const dados = await listarPorNome(nome, categoria, marca);
-
-        if(dados.length == 0)
-            throw new Error('Produto não encontrado.')
+        
+        if(dados.length === 0)
+            throw new Error('Produto não encontrado.');
 
         resp.send(dados);
 
@@ -75,7 +78,25 @@ server.get('/produto/busca', async (req, resp) => {
         resp.status(400).send({
             erro: err.message
         });
-        
+
+    }
+})
+
+server.get('/produto/busca/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const dados = await listarPorId(id);
+
+        if(dados.length === 0)
+            throw new Error('Produto não encontrado.');
+
+        resp.send(dados);
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });    
+
     }
 })
 
@@ -192,6 +213,9 @@ server.put('/imagem/:id', upload.single('capa'), async (req, resp) => {
 server.get('/imagem', async (req, resp) => {
     try {
         const dados = await listarImg();
+        if(dados.length === 0)
+            throw new Error('Não há imagens cadastradas.');
+
         resp.send(dados);
     } catch (err) {
         resp.status(400).send({
@@ -211,6 +235,5 @@ server.get('/imagem/:id', async (req, resp) => {
         });
     }
 })
-
 
 export default server;
