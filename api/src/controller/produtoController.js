@@ -29,7 +29,7 @@ server.post('/produto', async (req, resp) => {
         if(!cadastrar.promocao)
             throw new Error('Campo promoção obrigaratório.');
 
-        if(cadastrar.valor == undefined || cadastrar.valor < 0)
+        if(cadastrar.valor == undefined || cadastrar.valor <= 0)
             throw new Error('Valor inválido.');
 
         if(!cadastrar.detalhes)
