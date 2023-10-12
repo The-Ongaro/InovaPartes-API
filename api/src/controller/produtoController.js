@@ -123,7 +123,7 @@ server.put('/produto/:id', async (req, resp) => {
         if(!produto.promocao)
             throw new Error('Campo promoção obrigaratório.');
 
-        if(produto.valor == undefined || produto.valor < 0)
+        if(produto.valor == undefined || produto.valor <= 0)
             throw new Error('Valor inválido.');
 
         if(!produto.detalhes)
