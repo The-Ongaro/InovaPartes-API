@@ -65,6 +65,7 @@ FOREIGN KEY (id_cliente) REFERENCES tb_cliente(id_cliente) ON DELETE CASCADE
 
 CREATE TABLE tb_pedido (
 id_pedido 			INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente          INT NOT NULL,
 id_produto 			INT NOT NULL,
 id_cartao 			INT NOT NULL,
 id_endereco 		INT NOT NULL,
@@ -72,6 +73,7 @@ nr_pedido 			INT NOT NULL,
 nr_quantidade 		INT NOT NULL,
 ds_status 			VARCHAR(200) NOT NULL,
 FOREIGN KEY (id_produto) REFERENCES tb_produto (id_produto) ON DELETE CASCADE ,
+FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE,
 FOREIGN KEY (id_cartao) REFERENCES tb_cartao (id_cartao) ON DELETE CASCADE,
 FOREIGN KEY (id_endereco) REFERENCES tb_endereco (id_endereco) ON DELETE CASCADE
 );

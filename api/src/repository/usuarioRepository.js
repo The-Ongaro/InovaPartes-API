@@ -165,8 +165,8 @@ export async function cadastrarEndereco(endereco) {
 
 export async function listarEndCliente() {
     const comando =
-    `SELECT tb_cliente.id_cliente       as IdCliente,
-            tb_endereco.id_endereco     as IdEndereco,
+    `SELECT tb_endereco.id_endereco     as IdEndereco,
+            tb_cliente.id_cliente       as IdCliente,
                        nm_cliente	    as Nome,
                        nm_logradouro    as Logradouro,
                        ds_num_casa      as Numero,
@@ -223,7 +223,8 @@ export async function cadastrarPedidos(pedidos) {
 
 export async function listarPedidos() {
     const comando =
-    `SELECT tb_produto.id_produto 				as ProdutoID,
+    `SELECT tb_pedido.id_pedido                 as PedidoID,
+            tb_produto.id_produto 				as ProdutoID,
             tb_cliente.nm_cliente               as Cliente,
                        nm_produto				as Produto,
                        ds_marca 				as Marca,
@@ -236,8 +237,8 @@ export async function listarPedidos() {
              tb_pedido.nr_quantidade 			as Quantidade,
                        ds_status 				as StatusPedido
                 FROM tb_pedido
-                    INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
-                        INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_cliente.id_cliente
+                    INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
+                        INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
                             INNER JOIN tb_cartao ON tb_cartao.id_cartao = tb_pedido.id_cartao
                                 INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco
                                     ORDER BY tb_produto.id_produto`
@@ -248,7 +249,8 @@ export async function listarPedidos() {
 
 export async function listarStatusPedidos(status) {
     const comando = 
-    `SELECT tb_produto.id_produto 				as Produto,
+    `SELECT tb_pedido.id_pedido                 as IDPedido,
+            tb_produto.id_produto 				as Produto,
             tb_cliente.id_cliente               as Cliente,
                        nm_produto				as ProdutoNome,
              tb_cartao.id_cartao 				as Cartao,
@@ -258,17 +260,34 @@ export async function listarStatusPedidos(status) {
                        ds_cep					as CEP,
                        ds_cidade				as Cidade,
                        ds_estado				as Estado,
-                       nr_pedido 				as NumPedido,
              tb_pedido.nr_quantidade 			as Quantidade,
                        ds_status 				as StatusPedido
                             FROM tb_pedido
-                                INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_cliente.id_cliente
-                                 INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
-                                    INNER JOIN tb_cartao ON tb_cartao.id_cartao = tb_pedido.id_cartao
-                                        INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco
-                                            WHERE ds_status LIKE ?`
+                                INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
+                                    INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
+                                        INNER JOIN tb_cartao ON tb_cartao.id_cartao = tb_pedido.id_cartao
+                                            INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco
+                                                WHERE ds_status LIKE ?`
 
     const [resposta] = await conexao.query(comando, [`%${status}%`]);
     return resposta;
 }
 
+export async function alterarStatusPedido(status, id) {
+    const comando =
+    `UPDATE tb_pedido
+	    SET ds_status = ?
+		    WHERE id_pedido = ?`
+
+    const [resposta] = await conexao.query(comando, [status, id]);
+    return resposta.affectedRows;
+}
+
+export async function deletarPedido(id) {
+    const comando = 
+    `DELETE FROM tb_pedido
+        WHERE id_pedido = ?`
+
+    const [resposta] = await conexao.query(comando, [id]);
+    return resposta.affectedRows;
+}

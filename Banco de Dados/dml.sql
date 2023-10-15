@@ -217,11 +217,12 @@ DELETE FROM tb_cartao
     
 -- TABELA PEDIDO --
 -- INSERIR PEDIDO
-INSERT INTO tb_pedido (id_produto, id_cartao, id_endereco, nr_pedido, nr_quantidade, ds_status)
-				VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO tb_pedido (id_produto, id_cliente, id_cartao, id_endereco, nr_pedido, nr_quantidade, ds_status)
+				VALUES (?, ?, ?, ?, ?, ?, ?);
                 
 -- LISTAR PEDIDOS
 SELECT tb_produto.id_produto 				as ProdutoID,
+	   tb_cliente.id_cliente				as Cliente,
 				  nm_produto				as Produto,
                   ds_marca 					as Marca,
 	   tb_cartao.id_cartao 					as Cartao,
@@ -230,11 +231,11 @@ SELECT tb_produto.id_produto 				as ProdutoID,
                   nm_logradouro				as Logradouro,
                   ds_cidade					as Cidade,
                   ds_estado					as Estado,
-                  nr_pedido 				as NumPedido,
        tb_pedido.nr_quantidade 				as Quantidade,
                   ds_status 				as StatusPedido
 	FROM tb_pedido
 		INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
+		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
         INNER JOIN tb_cartao ON tb_cartao.id_cartao = tb_pedido.id_cartao
         INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco;
 
@@ -248,7 +249,6 @@ SELECT tb_produto.id_produto 				as Produto,
                   ds_cep					as CEP,
                   ds_cidade					as Cidade,
                   ds_estado					as Estado,
-                  nr_pedido 				as NumPedido,
 		tb_pedido.nr_quantidade 			as Quantidade,
                   ds_status 				as StatusPedido
 		FROM tb_pedido
@@ -261,6 +261,10 @@ SELECT tb_produto.id_produto 				as Produto,
 UPDATE tb_pedido
 	SET ds_status = ?
 		WHERE id_pedido = ?;
+
+-- DELETAR PEDIDO
+DELETE FROM tb_pedido
+	WHERE id_pedido = ?;
     
 -- TABELA ENDERECO --
 -- INSERIR ENDERECO USUARIO
@@ -268,29 +272,29 @@ INSERT INTO tb_endereco (id_cliente, nm_logradouro, ds_num_casa, ds_complemento,
 				VALUES (?, ?, ?, ?, ?, ?, ?, ?);
                 
 -- LISTAR ENDERECO + USUARIO
-SELECT tb_cliente.id_cliente as IdCliente,
-	   nm_cliente	as Nome,
-       nm_logradouro as Logradouro,
-       ds_num_casa as Numero,
-       ds_complemento as Complemento,
-       ds_cep as CEP,
-       ds_bairro as Bairro,
-       ds_cidade as Cidade,
-       ds_estado as Estado
+SELECT tb_cliente.id_cliente 	as IdCliente,
+	   nm_cliente				as Nome,
+       nm_logradouro 			as Logradouro,
+       ds_num_casa 				as Numero,
+       ds_complemento 			as Complemento,
+       ds_cep 					as CEP,
+       ds_bairro 				as Bairro,
+       ds_cidade 				as Cidade,
+       ds_estado 				as Estado
 	FROM tb_endereco
 		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_endereco.id_cliente
 			ORDER BY IdCliente;
             
 -- ALTERAR ENDERECO
 UPDATE tb_endereco
-	SET nm_logradouro = ?,
-		ds_num_casa = ?,
-        ds_complemento = ?,
-        ds_cep = ?,
-        ds_bairro = ?,
-        ds_cidade = ?,
-        ds_estado = ?
-	WHERE id_cliente = ?;
+	SET nm_logradouro 	= ?,
+		ds_num_casa 	= ?,
+        ds_complemento 	= ?,
+        ds_cep 			= ?,
+        ds_bairro 		= ?,
+        ds_cidade 		= ?,
+        ds_estado 		= ?
+	WHERE id_cliente	= ?;
 
 -- DELETAR ENDEREÇO
 DELETE FROM tb_endereco

@@ -1,4 +1,4 @@
-import { alterarEndereco, alterarImgCliente, alterarInfoCliente, buscarPorCpf, buscarPorNomeCpf, cadastrarPedidos, cadastroCliente, deletarCliente, cadastrarEndereco, listarEndCliente, listarclientes, loginCliente, cadastrarCartao, listarInfoCartao, alterarInfoCartao, listarPedidos, deletarInfoCartao, listarStatusPedidos } from "../repository/usuarioRepository.js";
+import { alterarEndereco, alterarImgCliente, alterarInfoCliente, buscarPorCpf, buscarPorNomeCpf, cadastrarPedidos, cadastroCliente, deletarCliente, cadastrarEndereco, listarEndCliente, listarclientes, loginCliente, cadastrarCartao, listarInfoCartao, alterarInfoCartao, listarPedidos, deletarInfoCartao, listarStatusPedidos, alterarStatusPedido, deletarPedido, deletarEnd } from "../repository/usuarioRepository.js";
 
 import { Router } from "express";
 import multer from 'multer';
@@ -88,7 +88,6 @@ server.get('/usuario', async (req, resp) => {
     }
 })
 
-// ARRUMAR VALIDAÇÃO.
 server.get('/usuario/busca', async (req, resp) => {
     try {
         const {nome, cpf} = req.query;
@@ -156,6 +155,7 @@ server.delete('/usuario/:id', async (req, resp) => {
         });
     }
 })
+
 
 // ENDPOINTS CARTÃO CLIENTE.
 server.post('/cartao', async (req, resp) => {
@@ -349,7 +349,7 @@ server.put('/endereco/:id', async (req, resp) =>{
 server.delete('/endereco/:id', async (req, resp) => {
     try {
         const {id} = req.params;
-        const resposta = await deletarCliente(id);
+        const resposta = await deletarEnd(id);
         if(resposta != 1)
             throw new Error('Não foi possível deletar esse endereço.');
 
@@ -361,6 +361,7 @@ server.delete('/endereco/:id', async (req, resp) => {
         });
     }
 })
+
 
 // ENDPOINTS PEDIDO CLIENTE
 server.post('/pedido', async (req, resp) => {
@@ -419,6 +420,43 @@ server.get('/pedido/busca', async (req, resp) => {
             throw new Error('Status inválido.');
 
         resp.send(resposta);
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
+server.put('/pedido/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const {status} = req.body;
+        if(!status)
+        throw new Error('Status inválido.');
+
+        const resposta = await alterarStatusPedido(status, id);
+        if(resposta != 1)
+            throw new Error('Não foi possível alterar o status do pedido.');
+
+        resp.status(200).send();
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
+server.delete('/pedido/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const resposta = await deletarPedido(id);
+
+        if(resposta != 1)
+            throw new Error('Não foi possível deletar o pedido.');
+
+        resp.status(200).send();
 
     } catch (err) {
         resp.status(400).send({
