@@ -1,6 +1,12 @@
 CREATE DATABASE inovapartesAPI;
 USE inovapartesAPI;
 
+CREATE TABLE tb_categoria (
+id_categoria 		INT PRIMARY KEY AUTO_INCREMENT,
+ds_categoria 		VARCHAR(100) NOT NULL
+);
+
+
 CREATE TABLE tb_produto (
 id_produto 			INT PRIMARY KEY AUTO_INCREMENT,
 id_categoria		INT NOT NULL,
@@ -16,12 +22,6 @@ FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria) ON DELETE CASC
 );
 
         
-CREATE TABLE tb_categoria (
-id_categoria 		INT PRIMARY KEY AUTO_INCREMENT,
-ds_categoria 		VARCHAR(100) NOT NULL
-);
-
-
 CREATE TABLE tb_img_produto (
 id_img_produto 		INT PRIMARY KEY AUTO_INCREMENT,
 id_produto			INT NOT NULL,
@@ -61,6 +61,20 @@ nr_cod_seguranca 	INT NOT NULL,
 nr_parcelas 		INT NOT NULL,
 FOREIGN KEY (id_cliente) REFERENCES tb_cliente(id_cliente) ON DELETE CASCADE
 );
+
+
+CREATE TABLE tb_endereco (
+id_endereco 		INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente 			INT NOT NULL,
+nm_logradouro 		VARCHAR(100) NOT NULL,
+ds_num_casa 		VARCHAR(100) NOT NULL,
+ds_complemento 		VARCHAR(100) NOT NULL,
+ds_cep 				VARCHAR(100) NOT NULL,
+ds_bairro 			VARCHAR(100) NOT NULL,
+ds_cidade 			VARCHAR(100) NOT NULL,
+ds_estado 			VARCHAR(100) NOT NULL,
+FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE
+);
     
 
 CREATE TABLE tb_pedido (
@@ -76,18 +90,4 @@ FOREIGN KEY (id_produto) REFERENCES tb_produto (id_produto) ON DELETE CASCADE ,
 FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE,
 FOREIGN KEY (id_cartao) REFERENCES tb_cartao (id_cartao) ON DELETE CASCADE,
 FOREIGN KEY (id_endereco) REFERENCES tb_endereco (id_endereco) ON DELETE CASCADE
-);
-
-
-CREATE TABLE tb_endereco (
-id_endereco 		INT PRIMARY KEY AUTO_INCREMENT,
-id_cliente 			INT NOT NULL,
-nm_logradouro 		VARCHAR(100) NOT NULL,
-ds_num_casa 		VARCHAR(100) NOT NULL,
-ds_complemento 		VARCHAR(100) NOT NULL,
-ds_cep 				VARCHAR(100) NOT NULL,
-ds_bairro 			VARCHAR(100) NOT NULL,
-ds_cidade 			VARCHAR(100) NOT NULL,
-ds_estado 			VARCHAR(100) NOT NULL,
-FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE
 );
