@@ -136,7 +136,7 @@ export async function alterarInfoCartao(id, cartao) {
             nr_parcelas 		= ?
         WHERE id_cliente 	    = ?`
 
-    conts [resposta] = await conexao.query(comando, [cartao.titular, cartao.numero, 
+    const [resposta] = await conexao.query(comando, [cartao.titular, cartao.numero, 
     cartao.validade, cartao.codSeguranca, cartao.parcelas, id]);
     return resposta.affectedRows;
 }
