@@ -57,8 +57,8 @@ server.put('/usuario/:id/perfil', upload.single('perfil'), async (req, resp) => 
 
 server.post('/usuario/login', async (req, resp) => {
     try {
-        const {email, senha} = req.body;
-        const resposta = await loginCliente(email, senha);
+        const {email, cpf, senha} = req.body;
+        const resposta = await loginCliente(email, cpf, senha);
 
         if(!resposta)
             throw new Error('Credenciais inválidas.')
@@ -112,12 +112,11 @@ server.put('/usuario/:id', async (req, resp) => {
         if(!cliente.nome)
             throw new Error('Nome inválido.');
 
-        const buscarCpf = await buscarPorCpf(cliente.cpf)
-        if(buscarCpf.length > 0 || cliente.cpf == undefined)
-            throw new Error('CPF já cadastrado.');
+        if(!cliente.cpf)
+            throw new Error('CPF inválido.');
 
         if(!cliente.telefone)
-            throw new Error('Telefone Inválido.');
+            throw new Error('Telefone inválido.');
 
         if(!cliente.email)
             throw new Error('Email inválido.');

@@ -13,8 +13,8 @@ server.post('/adm', async (req, resp) => {
         if(!cadastrar.nome)
             throw new Error('Nome inválido.');
 
-        const buscarCpf = await buscarPorCpf(cadastrar.cpf);
-        if(buscarCpf.length > 0)
+        const buscarCpf = await buscarPorCpfNome(cadastrar.cpf);
+        if(buscarCpf.length > 0 || buscarCpf == undefined)
             throw new Error('CPF já cadastrado.');
 
         if(!cadastrar.email)
@@ -60,7 +60,7 @@ server.put('/adm/:id', async (req, resp) => {
             throw new Error('Nome inválido.');
 
         if(!alteracao.cpf)
-            throw new Error('CPF já cadastrado.');
+            throw new Error('CPF inválido.');
 
         if(!alteracao.email)
             throw new Error('E-mail inválido.');
@@ -81,11 +81,10 @@ server.put('/adm/:id', async (req, resp) => {
     }
 })
 
-
 server.post('/adm/login', async (req, resp) => {
     try {
-        const {email, senha} = req.body;
-        const resposta = await loginAdm(email, senha);
+        const {email, cpf, senha} = req.body;
+        const resposta = await loginAdm(email, cpf, senha);
 
         if(!resposta)
             throw new Error('Administrador inválido.');
@@ -131,7 +130,6 @@ server.get('/adm/busca', async (req, resp) => {
         });
     }
 })
-
 
 server.delete('/adm/:id', async (req, resp) => {
     try {

@@ -33,16 +33,18 @@ export async function alterarAdm(id, admin) {
     return resposta.affectedRows;
 }
 
-export async function loginAdm(email, senha) {
+export async function loginAdm(email, cpf, senha) {
     const comando =
     `SELECT id_adm 	as ID,
             nm_adm	as Nome,
-            ds_email as Email
+            ds_email as Email,
+            ds_cpf   as CPF
                 FROM tb_adm
                     WHERE ds_email = ? 
+                        OR ds_cpf = ?
                             AND ds_senha = ?`
 
-    const [resposta] = await conexao.query(comando, [email, senha]);
+    const [resposta] = await conexao.query(comando, [email, cpf, senha]);
     return resposta[0];
 }
 
@@ -51,7 +53,8 @@ export async function buscarPorCpfNome(cpf, nome) {
     `SELECT id_adm      as ID,
             nm_adm      as Nome,
             ds_email    as Email,
-            ds_cpf      as CPF
+            ds_cpf      as CPF,
+            img_adm   as Imagem
         FROM tb_adm
             WHERE ds_cpf = ?
                 OR nm_adm LIKE ?`

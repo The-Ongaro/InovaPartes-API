@@ -21,22 +21,24 @@ export async function alterarImgCliente(imagem, id) {
     return resposta.affectedRows;
 }
 
-export async function loginCliente(email, senha) {
+export async function loginCliente(email, cpf, senha) {
     const comando = 
-    `SELECT id_cliente 	as Id,
+    `SELECT id_cliente 	as ID,
             nm_cliente 	as Nome,
-            ds_email 	as Email
+            ds_email 	as Email,
+            ds_cpf      as CPF
 	            FROM tb_cliente
-		            WHERE ds_email 		= ?
-			            AND ds_senha 	= ?`
+		            WHERE ds_email 		 = ?
+                        OR ds_cpf        = ?
+			                AND ds_senha = ?`
 
-    const [resposta] = await conexao.query(comando, [email, senha]);
+    const [resposta] = await conexao.query(comando, [email, cpf, senha]);
     return resposta[0];
 }
 
 export async function listarclientes() {
     const comando = 
-    `SELECT id_cliente      as Id,
+    `SELECT id_cliente      as ID,
             nm_cliente      as Cliente,
             ds_cpf	        as CPF,
             ds_telefone     as Telefone,
@@ -50,10 +52,12 @@ export async function listarclientes() {
 
 export async function buscarPorNomeCpf(nome, cpf) {
     const comando = 
-    `SELECT nm_cliente      as Nome,
+    `SELECT id_cliente      as ID,
+            nm_cliente      as Nome,
             ds_cpf          as CPF,
             ds_telefone     as Telefone,
-            ds_email        as Email
+            ds_email        as Email,
+            img_cliente     as Perfil
                 FROM tb_cliente
                     WHERE nm_cliente LIKE ?
                        OR ds_cpf LIKE ?`

@@ -4,7 +4,7 @@
     VERBO: POST         CAMINHO: http://localhost:5000/adm 
     {
         "nome": "Catarina",
-        "cpf": "123.456.789.00",
+        "cpf": "123.456.789-00",
         "email": "catarina@gmail.com",
         "senha": "mnb@456",
         "imagem": ""
@@ -15,7 +15,7 @@
     FILES: 'perfil'
 
 (3) ALTERAR CADASTRO ADM
-    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id
+    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id => ID DO ADM
 
     {
         "nome": "Catarina",
@@ -27,15 +27,19 @@
 (4) LOGIN ADM
     VERBO: POST         CAMINHO: http://localhost:5000/adm/login
 
+    O ADMIN PODE REALIZAR O LOGIN  COM O E-MAIL OU CPF, MAS A SENHA É OBRIGATÓRIA.
     {
         "email": || "cpf":
         "senha":
-    }           
+    }  
 
--- NÃO HAVIA NECESSIDADE, MAS FIZ MESMO ASSIM
-(5) LISTAR TODOS ADM
+(5) BUSCAR POR NOME OU CPF
+    VERBO: GET          CAMINHO: http://localhost:5000/adm/busca?nome=
+                                 http://localhost:5000/adm/busca?cpf=         
+
+(6) LISTAR TODOS ADM
     VERBO: GET          CAMINHO: http://localhost:5000/adm             
 
-(6) DELETAR ADM
-    VERBO: DELETE       CAMINHO: http://localhost:5000/adm/:id
+(7) DELETAR ADM
+    VERBO: DELETE       CAMINHO: http://localhost:5000/adm/:id => ID DO ADM
 

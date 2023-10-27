@@ -12,15 +12,28 @@
         "imagem": ""
     }
 
+    RETORNA:
+
+    {
+        "nome": "Keila Cristina",
+        "cpf": "113.123.123-00",
+        "telefone": "(11) 94000-5000",
+        "email": "cristinakeila@gmail.com",
+        "senha": "abc@321",
+        "imagem": "",
+        "id": 2
+    }
+
 (2) ALTERAR A IMAGEM DO USUARIO
-    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id/perfil
+    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id/perfil => ID DO USUARIO
     FILES: 'perfil'
 
 (3) LOGIN USUARIO
     VERBO: POST         CAMINHO: http://localhost:5000/usuario/login
 
+    O USUARIO PODE REALIZAR O LOGIN  COM O E-MAIL OU CPF, MAS A SENHA É OBRIGATÓRIA.
     {
-        "email": "catarina@gmail.com",
+        "email": "catarina@gmail.com", || "cpf": "123.123.123-00"
         "senha": "abc@321"
     }   
 
@@ -30,7 +43,8 @@
         {
             "Id": 5,
             "Nome": "Catarina",
-            "Email": "catarina@gmail.com"
+            "Email": "catarina@gmail.com",
+            "CPF": "123.123.123-00"
         }
     ]
 
@@ -53,7 +67,7 @@
     ]
 
 (6) ALTERAR CADASTRO
-    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id
+    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id => ID DO USUARIO
 
     {
         "nome": "Maria Alice",
@@ -64,4 +78,4 @@
     }
 
 (7) DELETAR USUARIO 
-    VERBO: DELETE       CAMINHO: http://localhost:5000/usuario/:id
+    VERBO: DELETE       CAMINHO: http://localhost:5000/usuario/:id => ID DO USUARIO 
