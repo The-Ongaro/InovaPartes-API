@@ -121,7 +121,7 @@ server.get('/adm/busca', async (req, resp) => {
         const resposta = await buscarPorCpfNome(cpf, nome);
 
         if(resposta.length === 0)
-            throw new Error('Não há nenhum administrador cadastrado com esse CPF.');
+            throw new Error('Busca por administrador');
 
         resp.send(resposta);
 
@@ -139,7 +139,7 @@ server.delete('/adm/:id', async (req, resp) => {
         const resposta = await deletarAdm(id);
 
         if(resposta != 1)
-            throw new Error('Adm não pode ser deletado.')
+            throw new Error('O administrador não pode ser deletado.');
 
         resp.status(204).send();
 
