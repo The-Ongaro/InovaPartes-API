@@ -35,9 +35,9 @@ export async function alterarAdm(id, admin) {
 
 export async function loginAdm(email, senha) {
     const comando =
-    `SELECT id_adm 	as id,
-            nm_adm	as nome,
-            ds_email as email
+    `SELECT id_adm 	as ID,
+            nm_adm	as Nome,
+            ds_email as Email
                 FROM tb_adm
                     WHERE ds_email = ? 
                             AND ds_senha = ?`
@@ -46,19 +46,23 @@ export async function loginAdm(email, senha) {
     return resposta[0];
 }
 
-export async function buscarPorCpf(cpf) {
+export async function buscarPorCpfNome(cpf, nome) {
     const comando =
-    `SELECT ds_cpf
+    `SELECT id_adm      as ID,
+            nm_adm      as Nome,
+            ds_email    as Email,
+            ds_cpf      as CPF
         FROM tb_adm
-            WHERE ds_cpf = ?`
+            WHERE ds_cpf = ?
+                OR nm_adm LIKE ?`
 
-    const [resposta] = await conexao.query(comando, cpf);
+    const [resposta] = await conexao.query(comando, [cpf, `%${nome}%`]);
     return resposta;
 }
 
 export async function listarAdm() {
     const comando =
-    `SELECT id_adm      as Id,
+    `SELECT id_adm      as ID,
             nm_adm      as Nome,
             ds_cpf      as CPF,
             ds_email    as Email

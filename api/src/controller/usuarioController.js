@@ -55,7 +55,6 @@ server.put('/usuario/:id/perfil', upload.single('perfil'), async (req, resp) => 
     }
 })
 
-// ARRUMAR VALIDAÇÃO.
 server.post('/usuario/login', async (req, resp) => {
     try {
         const {email, senha} = req.body;

@@ -1,4 +1,4 @@
-import { alterarAdm, alterarImgAdm, buscarPorCpf, cadastrarAdm, deletarAdm, listarAdm, loginAdm } from "../repository/admRepository.js";
+import { alterarAdm, alterarImgAdm, buscarPorCpfNome, cadastrarAdm, deletarAdm, listarAdm, loginAdm } from "../repository/admRepository.js";
 
 import Router from "express";
 import multer from "multer";
@@ -108,6 +108,23 @@ server.get('/adm', async (req, resp) =>{
 
         resp.send(dados);
         
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
+server.get('/adm/busca', async (req, resp) => {
+    try {
+        const {cpf, nome} = req.query;
+        const resposta = await buscarPorCpfNome(cpf, nome);
+
+        if(resposta.length === 0)
+            throw new Error('Não há nenhum administrador cadastrado com esse CPF.');
+
+        resp.send(resposta);
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
