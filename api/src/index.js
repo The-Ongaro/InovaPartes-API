@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 
 import admController from './controller/admController.js';
+import cartaoController from './controller/cartaoController.js'
 import produtoController from './controller/produtoController.js';
 import usuarioController from './controller/usuarioController.js';
 
@@ -16,6 +17,7 @@ server.use('/storage/usuarioPerfil', express.static('storage/usuarioPerfil'));
 server.use('/storage/admPerfil', express.static('storage/admPerfil'));
 
 server.use(admController);
+server.use(cartaoController);
 server.use(produtoController);
 server.use(usuarioController);
 
