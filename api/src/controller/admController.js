@@ -1,4 +1,4 @@
-import { alterarAdm, alterarImgAdm, buscarPorCpfNome, cadastrarAdm, deletarAdm, listarAdm, loginAdm } from "../repository/admRepository.js";
+import { alterarAdm, alterarImgAdm, buscarPorCpfNome, buscarPorEmail, cadastrarAdm, deletarAdm, listarAdm, loginAdm } from "../repository/admRepository.js";
 
 import Router from "express";
 import multer from "multer";
@@ -17,8 +17,9 @@ server.post('/adm', async (req, resp) => {
         if(buscarCpf.length > 0 || buscarCpf == undefined)
             throw new Error('CPF já cadastrado.');
 
-        if(!cadastrar.email)
-            throw new Error('E-mail inválido.');
+        const buscarEmail = await buscarPorEmail(cadastrar.email);
+        if(buscarEmail.length > 0 || buscarEmail == undefined)
+            throw new Error('E-mail já cadastrado.');
 
         if(!cadastrar.senha)
             throw new Error('Senha inválida.');

@@ -1,4 +1,4 @@
-import { alterarImgCliente, alterarInfoCliente, buscarPorCpf, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
+import { alterarImgCliente, alterarInfoCliente, buscarPorEmail, buscarPorNomeCpf, cadastroCliente, deletarCliente, listarclientes, loginCliente } from "../repository/usuarioRepository.js";
 
 import { Router } from "express";
 import multer from 'multer';
@@ -13,16 +13,17 @@ server.post('/usuario', async (req, resp) => {
         if(!cadastrar.nome)
             throw new Error('Nome inválido.');
 
-        const buscarCpf = await buscarPorCpf(cadastrar.cpf)
+        const buscarCpf = await buscarPorNomeCpf(cadastrar.cpf)
         if(buscarCpf.length > 0 || cadastrar.cpf == undefined)
             throw new Error('CPF já cadastrado.');
 
         if(!cadastrar.telefone)
             throw new Error('Telefone Inválido.');
 
-        if(!cadastrar.email)
-            throw new Error('E-mail inválido.');
-
+        const buscarEmail = await buscarPorEmail(cadastrar.email);
+        if(buscarEmail.length > 0 || buscarEmail == undefined)
+            throw new Error('E-mail já cadastrado.');
+            
         if(!cadastrar.senha)
             throw new Error('Senha inválida.');
 

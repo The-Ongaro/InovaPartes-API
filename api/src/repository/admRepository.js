@@ -54,12 +54,22 @@ export async function buscarPorCpfNome(cpf, nome) {
             nm_adm      as Nome,
             ds_email    as Email,
             ds_cpf      as CPF,
-            img_adm   as Imagem
+            img_adm     as Imagem
         FROM tb_adm
             WHERE ds_cpf = ?
                 OR nm_adm LIKE ?`
 
     const [resposta] = await conexao.query(comando, [cpf, `%${nome}%`]);
+    return resposta;
+}
+
+export async function buscarPorEmail(email) {
+    const comando =
+    `SELECT ds_email    as Email
+        FROM tb_adm
+            WHERE ds_email = ?`
+
+    const [resposta] = await conexao.query(comando, [email]);
     return resposta;
 }
 

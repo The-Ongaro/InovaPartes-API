@@ -49,7 +49,7 @@ export async function listarclientes() {
     return resposta;
 }
 
-export async function buscarPorNomeCpf(nome, cpf) {
+export async function buscarPorNomeCpf(cpf, nome) {
     const comando = 
     `SELECT id_cliente      as ID,
             nm_cliente      as Nome,
@@ -58,10 +58,20 @@ export async function buscarPorNomeCpf(nome, cpf) {
             ds_email        as Email,
             img_cliente     as Perfil
                 FROM tb_cliente
-                    WHERE nm_cliente LIKE ?
-                       OR ds_cpf = ?`
+                    WHERE ds_cpf = ?
+                       OR nm_cliente = ?`
 
-    const [resposta] = await conexao.query(comando, [`%${nome}%`, cpf]);
+    const [resposta] = await conexao.query(comando, [cpf, `%${nome}%`]);
+    return resposta;
+}
+
+export async function buscarPorEmail(email) {
+    const comando =
+    `SELECT ds_email    as Email
+        FROM tb_cliente
+            WHERE ds_email = ?`
+
+    const [resposta] = await conexao.query(comando, [email]);
     return resposta;
 }
 
@@ -87,14 +97,3 @@ export async function deletarCliente(id) {
     const [resposta] = await conexao.query(comando, [id]);
     return resposta.affectedRows;
 }
-
-export async function buscarPorCpf(cpf) {
-    const comando =
-    `SELECT ds_cpf
-        FROM tb_cliente
-            WHERE ds_cpf = ?`
-
-    const [resposta] = await conexao.query(comando, [cpf]);
-    return resposta;
-}
-
