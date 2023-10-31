@@ -1,7 +1,7 @@
 -- ENDPOINTS DA tb_cliente --
 
 (1) CADASTRO USUARIO 
-    VERBO: POST        CAMINHO: http://localhost:5000/usuario
+    VERBO: POST        CAMINHO: http://localhost:5011/usuario
 
     {
         "nome": "Catarina",
@@ -25,11 +25,11 @@
     }
 
 (2) ALTERAR A IMAGEM DO USUARIO
-    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id/perfil => ID DO USUARIO
+    VERBO: PUT          CAMINHO: http://localhost:5011/usuario/:id/perfil => ID DO USUARIO
     FILES: 'perfil'
 
 (3) LOGIN USUARIO
-    VERBO: POST         CAMINHO: http://localhost:5000/usuario/login
+    VERBO: POST         CAMINHO: http://localhost:5011/usuario/login
 
     O USUARIO PODE REALIZAR O LOGIN  COM O E-MAIL OU CPF, MAS A SENHA É OBRIGATÓRIA.
     {
@@ -49,11 +49,11 @@
     ]
 
 (4) LISTAR TODOS OS USUARIOS
-    VERBO: GET          CAMINHO: http://localhost:5000/usuario
+    VERBO: GET          CAMINHO: http://localhost:5011/usuario
 
 (5) BUSCAR USUARIO POR NOME OU CPF
-    VERBO: GET          CAMINHO: http://localhost:5000/usuario/busca?nome=
-                                 http://localhost:5000/usuario/busca?cpf=
+    VERBO: GET          CAMINHO: http://localhost:5011/usuario/busca?nome=
+                                 http://localhost:5011/usuario/busca?cpf=
 
     RETORNA:
     
@@ -67,7 +67,7 @@
     ]
 
 (6) ALTERAR CADASTRO
-    VERBO: PUT          CAMINHO: http://localhost:5000/usuario/:id => ID DO USUARIO
+    VERBO: PUT          CAMINHO: http://localhost:5011/usuario/:id => ID DO USUARIO
 
     {
         "nome": "Maria Alice",
@@ -78,4 +78,4 @@
     }
 
 (7) DELETAR USUARIO 
-    VERBO: DELETE       CAMINHO: http://localhost:5000/usuario/:id => ID DO USUARIO 
+    VERBO: DELETE       CAMINHO: http://localhost:5011/usuario/:id => ID DO USUARIO 

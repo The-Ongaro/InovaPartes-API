@@ -1,7 +1,8 @@
 -- ENDPOINTS DA tb_adm --
 
 (1) CADASTAR ADM 
-    VERBO: POST         CAMINHO: http://localhost:5000/adm 
+    VERBO: POST         CAMINHO: http://localhost:5011/adm 
+    
     {
         "nome": "Catarina",
         "cpf": "123.456.789-00",
@@ -10,12 +11,24 @@
         "imagem": ""
     }  
 
+    RETORNA:
+    
+    {
+        "nome": "Catarina",
+        "cpf": "021.458.789-00",
+        "telefone": "11940059186",
+        "email": "catarinaongaro1@gmail.com",
+        "senha": "mnb@456",
+        "imagem": "",
+        "id": 7
+    }
+
 (2) ALTERAR IMAGEM ADM
-    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id/perfil => ID DO ADM.
+    VERBO: PUT          CAMINHO: http://localhost:5011/adm/:id/perfil => ID DO ADM.
     FILES: 'perfil'
 
 (3) ALTERAR CADASTRO ADM
-    VERBO: PUT          CAMINHO: http://localhost:5000/adm/:id => ID DO ADM
+    VERBO: PUT          CAMINHO: http://localhost:5011/adm/:id => ID DO ADM
 
     {
         "nome": "Catarina",
@@ -25,7 +38,7 @@
     }  
 
 (4) LOGIN ADM
-    VERBO: POST         CAMINHO: http://localhost:5000/adm/login
+    VERBO: POST         CAMINHO: http://localhost:5011/adm/login
 
     O ADMIN PODE REALIZAR O LOGIN  COM O E-MAIL OU CPF, MAS A SENHA É OBRIGATÓRIA.
     {
@@ -34,12 +47,12 @@
     }  
 
 (5) BUSCAR POR NOME OU CPF
-    VERBO: GET          CAMINHO: http://localhost:5000/adm/busca?nome=
-                                 http://localhost:5000/adm/busca?cpf=         
+    VERBO: GET          CAMINHO: http://localhost:5011/adm/busca?nome=
+                                 http://localhost:5011/adm/busca?cpf=         
 
 (6) LISTAR TODOS ADM
-    VERBO: GET          CAMINHO: http://localhost:5000/adm             
+    VERBO: GET          CAMINHO: http://localhost:5011/adm             
 
 (7) DELETAR ADM
-    VERBO: DELETE       CAMINHO: http://localhost:5000/adm/:id => ID DO ADM
+    VERBO: DELETE       CAMINHO: http://localhost:5011/adm/:id => ID DO ADM
 

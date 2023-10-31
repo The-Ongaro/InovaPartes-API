@@ -1,2 +1,44 @@
 -- ENDPOINTS tb_cartao --
 
+(1) CADASTRAR CARTÃO
+    VERBO: POST            CAMINHO: http://localhost:5011/cartao
+
+    {
+        "cliente": 2, => ID DO CLIENTE
+        "titular": "Yago Fonseca",
+        "numero": "0000 0000 0000 0000",
+        "validade": "12/23",
+        "codSeguranca": 123,
+        "parcelas": 2
+    }
+
+    RETORNA:
+
+    {
+        "cliente": 2,
+        "titular": "Catarina Ongaro",
+        "numero": "0000 0000 0000 0000",
+        "validade": "12/28",
+        "codSeguranca": 369,
+        "parcelas": 2,
+        "id": 2
+    }
+
+(2) LISTAR TODOS CARTÕES
+    VERBO: GET              CAMINHO: http://localhost:5011/cartao
+
+(3) ALTERAR INFO CARTÃO
+    VERBO: PUT              CAMINHO: http://localhost:5011/cartao/:id => ID DO CLIENTE
+
+    {
+        "titular": "Yago Fonseca",
+        "numero": "2222 2222 3333 3333",
+        "validade": "12/23",
+        "codSeguranca": 123,
+        "parcelas": 2
+    }
+
+    RETORNA: STATUS: 200 OK
+
+(4) DELETAR CADASTRO DE ALGUM CARTÃO
+    VERBO: DELETE           CAMINHO: http://localhost:5011/cartao/:id => DO CARTÃO

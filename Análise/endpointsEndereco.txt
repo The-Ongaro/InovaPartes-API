@@ -1,7 +1,7 @@
 -- ENDPOINTS tb_endereco --
 
 (1) ADICIONAR ENDEREÇO
-    VERBO: POST        CAMINHO: http://localhost:5000/endereco
+    VERBO: POST        CAMINHO: http://localhost:5011/endereco
 
     {
         "cliente": 1, => ID DO CLIENTE.
@@ -14,12 +14,12 @@
         "estado": "SP"
     }  
 
-(2) LISTAR ENDEREÇO + NOME USUARIO 
-    VERBO: GET          CAMINHO: http://localhost:5000/endereco
+(2) LISTAR ENDEREÇO
+    VERBO: GET          CAMINHO: http://localhost:5011/endereco
 
-(3) ALTERAR ENDEREÇO
-    VERBO: PUT          CAMINHO: http://localhost:5000/endereco/:id
-
+(3) ALTERAR ENDEREÇO 
+    VERBO: PUT          CAMINHO: http://localhost:5011/endereco/:id => ID DO CLIENTE
+ 
     {
         "logradouro": "Rua André Pernet",
         "numCasa": "395B",
@@ -31,3 +31,5 @@
     }  
 
 
+(4) DELETAR ENDEREÇO
+    VERBO: DELETE       CAMINHO: http://localhost:5011/endereco/:id => ID DO ENDEREÇO

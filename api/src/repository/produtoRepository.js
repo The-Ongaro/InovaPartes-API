@@ -112,6 +112,16 @@ export async function inserirCategoria(categoria) {
     return categoria;
 }
 
+export async function listarCategoria() {
+    const comando =
+    `SELECT ds_categoria    as Categoria,
+            id_categoria    as ID
+        FROM tb_categoria`
+
+    const [resposta] = await conexao.query(comando);
+    return resposta;
+}
+
 
 export async function inserirImg(imagem) {
     const comando = 

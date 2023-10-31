@@ -16,7 +16,7 @@ server.post('/endereco', async (req, resp) => {
         if(endereco.numCasa == undefined || endereco.numCasa < 0)
             throw new Error('Número inválido.');
 
-        if(!endereco.complemento)
+        if(endereco.complemento == undefined)
             throw new Error('Complemento inválido.');
 
         if(!endereco.cep)
@@ -68,7 +68,7 @@ server.put('/endereco/:id', async (req, resp) =>{
         if(endereco.numCasa == undefined || endereco.numCasa < 0)
             throw new Error('Número inválido.');
 
-        if(!endereco.complemento)
+        if(endereco.complemento == undefined)
             throw new Error('Complemento inválido.');
 
         if(!endereco.cep)

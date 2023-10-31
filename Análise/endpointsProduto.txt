@@ -1,7 +1,7 @@
 -- ENDPOINTS DA tb_produto --
 
 (1) CADASTRAR PRODUTO
-    VERBO: POST       CAMINHO: http://localhost:5000/produto
+    VERBO: POST       CAMINHO: http://localhost:5011/produto
     
     {
         "categoria": 1,
@@ -16,15 +16,15 @@
     }   
 
 (2) LISTAR TODOS OS PRODUTOS
-    VERBO: GET        CAMINHO: http://localhost:5000/produto
+    VERBO: GET        CAMINHO: http://localhost:5011/produto
 
 (3) LISTAR PRODUTO POR NOME, CATEGORIA E MARCA
-    VERBO: GET        CAMINHO: http://localhost:5000/produto/busca?nome=
-                               http://localhost:5000/produto/busca?categoria=
-                               http://localhost:5000/produto/busca?marca=
+    VERBO: GET        CAMINHO: http://localhost:5011/produto/busca?nome=
+                               http://localhost:5011/produto/busca?categoria=
+                               http://localhost:5011/produto/busca?marca=
 
 (4) ALTERAR PRODUTOS
-    VERBO: PRODUTO     CAMINHO: http://localhost:5000/produto/:id     
+    VERBO: PRODUTO     CAMINHO: http://localhost:5011/produto/:id     
 
     {
         "categoria": 2,
@@ -39,21 +39,41 @@
     }
 
 (5) DELETAR PRODUTO
-    VERBO: DELETE       CAMINHO: http://localhost:5000/produto/:id
+    VERBO: DELETE       CAMINHO: http://localhost:5011/produto/:id
 
 
 -- TABELA CATRGORIA --
 (1) ADICIONAR CATEGORIA
-    VERBO: POST         CAMINHO: http://localhost:5000/categoria
+    VERBO: POST         CAMINHO: http://localhost:5011/categoria
 
     {
         "categoria": "Caminhão"
     }
 
+    RETORNA:
+
+    {
+        "categoria": "Caminhão",
+        "id": 3
+    }
+
+(2) LISTAR CATEGORIAS
+    VERBO: GET             CAMINHO: http://localhost:5011/categoria
+
+    RETORNA:
+
+    [
+        {
+            "Categoria": "Alta Performance",
+            "ID": 1
+        }
+    ]
+    
+
 -- ENDPOINTS DA tb_img_produto --
 -- TABELA IMAGEM DOS PRODUTOS (AQUI É ONDE O FILHO CHORA E A MÃE NÃO VÊ)--
 (1) ADICIONAR IMAGEM
-    VERBO: POST         CAMINHO: http://localhost:5000/imagem
+    VERBO: POST         CAMINHO: http://localhost:5011/imagem
 
     {
         "produto": 1, => ID DO PRODUTO
@@ -61,16 +81,16 @@
     }
 
 (2) ALTERAR IMAGEM (PRESTA ATENÇÃO AQUI!)
-    VERBO: put          CAMINHO: http://localhost:5000/imagem/:id => ESSE ID É O id_img_produto QUE VOCÊ CRIOU ANTERIORMENTE.
+    VERBO: put          CAMINHO: http://localhost:5011/imagem/:id => ESSE ID É O id_img_produto QUE VOCÊ CRIOU ANTERIORMENTE.
     FILES: 'capa'
 
     SE TIVER DÚVIDA EM COMO ADICIONAR A IMAGEM ME CHAMA, ESTAREI A DISPOSIÇÃO, OU NÃO.
 
 (3) LISTAR AS IMAGENS (NÃO SABIA SE IA QUERER OU NÃO, AI EU FIZ)
-    VERBO: GET          CAMINHO: http://localhost:5000/imagem
+    VERBO: GET          CAMINHO: http://localhost:5011/imagem
 
 (4) LISTAR IMAGEM COM A INFORMAÇÃO DO PRODUTO JUNTO (FAZ O TESTE DE PASSAR ESSE ENDPOINT NA TELA DE INFORMAÇÕES DO PRODUTO)
-    VERBO: GET          CAMINHO: http://localhost:5000/imagem/:id => ID DO PRODUTO QUE DESEJA, MAS A IMAGEM TEM QUE SER ADIONADA ANTES, SE NÃO DA ERRADO.
+    VERBO: GET          CAMINHO: http://localhost:5011/imagem/:id => ID DO PRODUTO QUE DESEJA, MAS A IMAGEM TEM QUE SER ADIONADA ANTES, SE NÃO DA ERRADO.
 
     E ASSIM RETORNA A BRINCADEIRA:
     [

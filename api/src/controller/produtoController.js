@@ -1,4 +1,4 @@
-import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarImg, listarImgInfo, listarPorId, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
+import { alterarImg, alterarProduto, cadastrarProdutos, deletarProduto, inserirCategoria, inserirImg, listarCategoria, listarImg, listarImgInfo, listarPorId, listarPorNome, listarProdutos } from '../repository/produtoRepository.js';
 
 import Router from 'express';
 import multer from 'multer';
@@ -179,6 +179,22 @@ server.post('/categoria', async (req, resp) => {
     }
 })
 
+server.get('/categoria', async (req, resp) => {
+    try {
+        const dados = await listarCategoria();
+
+        if(dados.length === 0)
+            throw new Error('Não há nenhuma categoria cadastrada.');
+
+        resp.send(dados);
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
 
 server.post('/imagem', async (req, resp) => {
     try {
@@ -186,6 +202,7 @@ server.post('/imagem', async (req, resp) => {
         const resposta = await inserirImg(imagem);
         
         resp.send(resposta);
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -203,6 +220,7 @@ server.put('/imagem/:id', upload.single('capa'), async (req, resp) => {
             throw new Error('A imagem não pode ser salva.');
 
         resp.status(204).send();
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -217,6 +235,7 @@ server.get('/imagem', async (req, resp) => {
             throw new Error('Não há imagens cadastradas.');
 
         resp.send(dados);
+
     } catch (err) {
         resp.status(400).send({
             error: err.message
@@ -228,7 +247,12 @@ server.get('/imagem/:id', async (req, resp) => {
     try {
         const {id} = req.params;
         const dados = await listarImgInfo(id);
+
+        if(dados.length === 0)
+            throw new Error('Não há nenhuma imagem cadastrada para este produto.');
+
         resp.send(dados);
+
     } catch (err) {
         resp.status(400).send({
             erro: err.message
