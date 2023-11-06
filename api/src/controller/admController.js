@@ -2,9 +2,23 @@ import { alterarAdm, alterarImgAdm, buscarPorCpfNome, buscarPorEmail, cadastrarA
 
 import Router from "express";
 import multer from "multer";
+import passwordValidator from 'password-validator';
 
 const server = Router();
 const upload = multer({dest: 'storage/admPerfil'});
+
+// FAZER O MESMO NO CADASTRO DO USUÁRIO.
+const schema = new passwordValidator();
+schema
+    .is().min(8, 'A quantidade miníma são 8 caractéres.') // Minimum length 8
+    .is().max(100, 'A quantidade máxima é de 100 caractéres.') // Maximum length 100
+    .has().uppercase(1, 'Adicione no minímo 1 caractére maiúsculo.') // Must have uppercase letters
+    .has().lowercase(1, 'Adicione no minímo 1 caractére minúsculo.') // Must have lowercase letters
+    .has().digits(1, 'Adicione no minímo 1 digito numérico.') // Must have at least 2 digits
+    .has().not().spaces(true, 'Não adicione espaços na senha.') // Should not have spaces
+    // .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+    .has().symbols(1, 'Adicione no minímo 1 caractére especial (ex.: @, #, !)') // special character
+
 
 server.post('/adm', async (req, resp) => {
     try {
@@ -23,6 +37,12 @@ server.post('/adm', async (req, resp) => {
 
         if(!cadastrar.senha)
             throw new Error('Senha inválida.');
+        const errorSenha = schema.validate(cadastrar.senha, {details: true});
+        if(errorSenha !== 0) {
+            for(let item of errorSenha) {
+                throw new Error(`${item.message}`);
+            }
+        }
 
         const adminCadastrado = await cadastrarAdm(cadastrar);
         resp.send(adminCadastrado);
