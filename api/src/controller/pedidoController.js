@@ -1,4 +1,4 @@
-import { alterarStatusPedido, cadastrarPedidos, deletarPedido, listarPedidos, listarStatusPedidos } from '../repository/pedidoRepository.js';
+import { alterarStatusPedido, cadastrarPedido, deletarPedido, listarPedidos, listarStatusPedidos } from '../repository/pedidoRepository.js';
 
 import { Router } from 'express';
 const server = Router();
@@ -25,7 +25,7 @@ server.post('/pedido', async (req, resp) => {
         if(!pedidos.status)
             throw new Error('Status inválido.');
 
-        const pedidosCadastrados = await cadastrarPedidos(pedidos);
+        const pedidosCadastrados = await cadastrarPedido(pedidos);
         resp.send(pedidosCadastrados);
 
     } catch (err) {

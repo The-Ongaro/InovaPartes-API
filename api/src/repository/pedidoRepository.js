@@ -1,6 +1,6 @@
 import { conexao } from "./connection.js";
 
-export async function cadastrarPedidos(pedidos) {
+export async function cadastrarPedido(pedidos) {
     const comando =
     `INSERT INTO tb_pedido (id_cliente, id_produto, id_cartao, id_endereco, nr_quantidade, ds_status)
                     VALUES (?, ?, ?, ?, ?, ?)`
