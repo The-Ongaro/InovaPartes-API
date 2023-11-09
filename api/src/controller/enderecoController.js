@@ -84,7 +84,7 @@ server.put('/endereco/:id', async (req, resp) =>{
             throw new Error('Estado inválido');
 
         const resposta = await alterarEndereco(id, endereco);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('O endereço não pode ser alterado.');
 
         resp.status(200).send();
@@ -100,7 +100,7 @@ server.delete('/endereco/:id', async (req, resp) => {
     try {
         const {id} = req.params;
         const resposta = await deletarEnd(id);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('Não foi possível deletar esse endereço.');
 
         resp.status(204).send();

@@ -75,7 +75,7 @@ server.put('/pedido/:id', async (req, resp) => {
         throw new Error('Status inválido.');
 
         const resposta = await alterarStatusPedido(status, id);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('Não foi possível alterar o status do pedido.');
 
         resp.status(200).send();
@@ -92,7 +92,7 @@ server.delete('/pedido/:id', async (req, resp) => {
         const {id} = req.params;
         const resposta = await deletarPedido(id);
 
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('Não foi possível deletar o pedido.');
 
         resp.status(200).send();

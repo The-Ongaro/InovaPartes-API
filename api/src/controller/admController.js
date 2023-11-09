@@ -7,7 +7,7 @@ import passwordValidator from 'password-validator';
 const server = Router();
 const upload = multer({dest: 'storage/admPerfil'});
 
-// FAZER O MESMO NO CADASTRO DO USUÁRIO.
+
 const schema = new passwordValidator();
 schema
     .is().min(8, 'A quantidade miníma são 8 caractéres.') // Minimum length 8
@@ -60,7 +60,7 @@ server.put('/adm/:id/perfil', upload.single('perfil'),async (req, resp) => {
         const imagem = req.file.path;
 
         const resposta = await alterarImgAdm(imagem, id);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('A imagem não pode ser salva.');
 
         resp.status(204).send();
@@ -88,9 +88,15 @@ server.put('/adm/:id', async (req, resp) => {
 
         if(!alteracao.senha)
             throw new Error('Senha inválida.');
+        const errorSenha = schema.validate(alteracao.senha, {details: true});
+        if(errorSenha !== 0) {
+            for(let item of errorSenha) {
+                throw new Error(`${item.message}`);
+            }
+        }
 
         const resposta = await alterarAdm(id, alteracao);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('Adm não pode ser alterado.');
 
         resp.status(200).send();
@@ -157,7 +163,7 @@ server.delete('/adm/:id', async (req, resp) => {
         const {id} = req.params;
         const resposta = await deletarAdm(id);
 
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('O administrador não pode ser deletado.');
 
         resp.status(204).send();

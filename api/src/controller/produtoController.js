@@ -133,7 +133,7 @@ server.put('/produto/:id', async (req, resp) => {
             throw new Error('Quantidade inválida.');
 
         const resposta = await alterarProduto(id, produto);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('O produto não pode ser alterado.');
         else
             resp.status(200).send();
@@ -150,7 +150,7 @@ server.delete('/produto/:id', async (req, resp) => {
         const {id} = req.params;
         const resposta = await deletarProduto(id);
 
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('O produto não pode ser deletado.');
 
         resp.status(204).send();
@@ -216,7 +216,7 @@ server.put('/imagem/:id', upload.single('capa'), async (req, resp) => {
         const img = req.file.path;
 
         const resposta = await alterarImg(img, id);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('A imagem não pode ser salva.');
 
         resp.status(204).send();

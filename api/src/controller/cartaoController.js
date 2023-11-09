@@ -69,7 +69,7 @@ server.put('/cartao/:id', async (req, resp) => {
             throw new Error('Parcela inválida.');
 
         const resposta = await alterarInfoCartao(id, cartao);
-        if(resposta != 1)
+        if(resposta !== 1)
             throw new Error('As informações do cartão não podem ser alteradas.');
 
         resp.status(200).send();
