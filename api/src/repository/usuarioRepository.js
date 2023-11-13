@@ -38,7 +38,7 @@ export async function loginCliente(email, cpf, senha) {
 export async function listarclientes() {
     const comando = 
     `SELECT id_cliente      as ID,
-            nm_cliente      as Cliente,
+            nm_cliente      as Nome,
             ds_cpf	        as CPF,
             ds_telefone     as Telefone,
             ds_email		as Email,

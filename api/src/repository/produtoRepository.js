@@ -13,7 +13,7 @@ export async function cadastrarProdutos(produto) {
 
 export async function listarProdutos() {
     const comando =
-    `SELECT 		 id_produto		as Id, 
+    `SELECT 		 id_produto		as ID, 
         tb_categoria.ds_categoria	as Categoria,
                      nm_produto		as Produto,
                      ds_marca		as Marca,
@@ -33,7 +33,7 @@ export async function listarProdutos() {
 
 export async function listarPorNome(nome, categoria, marca) {
     const comando =
-    `SELECT  id_produto,
+    `SELECT  id_produto         as ID,
              ds_categoria	    as Categoria,
              nm_produto		    as Produto,
              ds_marca		    as Marca,
@@ -55,7 +55,7 @@ export async function listarPorNome(nome, categoria, marca) {
 
 export async function listarPorId(id) {
     const comando = 
-    `SELECT  id_produto,
+    `SELECT  id_produto         as ID,
              ds_categoria	    as Categoria,
              nm_produto		    as Produto,
              ds_marca		    as Marca,
@@ -156,7 +156,8 @@ export async function listarImg() {
 
 export async function listarImgInfo(id) {
     const comando =
-    `SELECT nm_produto 		as Nome,
+    `SELECT id_produto      as ID,
+            nm_produto 		as Nome,
             ds_marca 		as Marca,
             ds_modelo 		as Modelo,
             bt_disponivel 	as Disponivel,
