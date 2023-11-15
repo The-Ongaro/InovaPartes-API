@@ -6,7 +6,7 @@ export async function cadastrarPedido(pedidos) {
                     VALUES (?, ?, ?, ?, ?, ?)`
 
     const [resposta] = await conexao.query(comando, [pedidos.cliente, pedidos.produto, pedidos.cliente,
-    pedidos.cartao, pedidos.endereco,pedidos.quantidade, pedidos.status]);
+    pedidos.cartao, pedidos.endereco, pedidos.quantidade, pedidos.status]);
     pedidos.id = resposta.insertId;
     return pedidos;
 }
@@ -15,7 +15,7 @@ export async function listarPedidos() {
     const comando =
     `SELECT tb_pedido.id_pedido                 as PedidoID,
             tb_produto.id_produto 				as ProdutoID,
-            tb_cliente.nm_cliente               as Cliente,
+            tb_cliente.nm_cliente               as Nome,
                        nm_produto				as Produto,
                        ds_marca 				as Marca,
              tb_cartao.id_cartao 				as Cartao,
@@ -40,8 +40,8 @@ export async function listarPedidos() {
 export async function listarStatusPedidos(status) {
     const comando = 
     `SELECT tb_pedido.id_pedido                 as IDPedido,
-            tb_produto.id_produto 				as Produto,
-            tb_cliente.id_cliente               as Cliente,
+            tb_produto.id_produto 				as ProdutoID,
+            tb_cliente.id_cliente               as ClienteID,
                        nm_produto				as ProdutoNome,
              tb_cartao.id_cartao 				as Cartao,
                        nm_titular				as Titular,

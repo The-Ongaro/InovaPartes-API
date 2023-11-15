@@ -6,7 +6,7 @@ INSERT INTO tb_produto (id_categoria, nm_produto, ds_marca, ds_modelo, bt_dispon
 				VALUES (?, ?, ? ?, ?, ?, ?, ?, ?);
 
 -- LISTAR TODOS OS PRODUTOS 
-SELECT 				 id_produto		as Id, 
+SELECT 				 id_produto		as ID, 
 		tb_categoria.ds_categoria	as Categoria,
 					 nm_produto		as Produto,
 					 ds_marca		as Marca,
@@ -21,7 +21,7 @@ SELECT 				 id_produto		as Id,
 			ORDER BY Id;
             
 -- LISTAR PRODUTOS POR CATEGORIA, NOME, ID OU MARCA
-SELECT  id_produto,
+SELECT  id_produto		as ID,
 		ds_categoria	as Categoria,
         nm_produto		as Produto,
         ds_marca		as Marca,
@@ -74,7 +74,8 @@ SELECT id_img_produto 	as imgID,
 		FROM tb_img_produto;
         
 -- LISTAR IMAGEM COM INFO DO PRODUTO
-SELECT nm_produto 		as Nome,
+SELECT id_produto		as ID,
+	   nm_produto 		as Nome,
 	   ds_marca 		as Marca,
        ds_modelo 		as Modelo,
        bt_disponivel 	as Disponivel,
@@ -116,24 +117,24 @@ UPDATE tb_adm
 	WHERE id_adm 	= ?;
     
 -- LOGIN ADM (e-mail ou cpf)
-SELECT id_adm 	as id,
-	   nm_adm	as nome,
-       ds_email as email
+SELECT id_adm 	as ID,
+	   nm_adm	as Nome,
+       ds_email as Email
 	FROM tb_adm
 		   WHERE ds_email = ? 
 				OR ds_cpf = ?
 					AND ds_senha = ?;
 
 -- LISTAR TODOS ADM
-SELECT id_adm	as id,
-	   nm_adm	as nome,
-	   ds_cpf	as cpf,
-	   ds_email	as email
+SELECT id_adm	as ID,
+	   nm_adm	as Nome,
+	   ds_cpf	as CPF,
+	   ds_email	as Email
 	   		FROM tb_adm;
 
 -- DELETAR ADM
 DELETE FROM tb_adm
-		WHERE id_adm = 1;
+		WHERE id_adm = ?;
                     
 -- TABELA CLIENTE -- 
 -- ADICIONAR CLIENTE
@@ -146,24 +147,24 @@ UPDATE tb_cliente
 		WHERE id_cliente = ?;
                 
 -- LISTAR TODOS CLIENTES
-SELECT nm_cliente as Cliente,
-	   ds_cpf	  as CPF,
-       ds_telefone as Telefone,
+SELECT nm_cliente 	as Nome,
+	   ds_cpf	  	as CPF,
+       ds_telefone 	as Telefone,
        ds_email		as Email
 	FROM tb_cliente;
                 
 -- LISTAR CLIENTES POR NOME OU ID
-SELECT nm_cliente,
-	   ds_cpf,
-       ds_telefone,
-       ds_email,
-       ds_senha
+SELECT nm_cliente	as Nome,
+	   ds_cpf		as CPF,
+       ds_telefone	as Telefone,
+       ds_email		as Email,
+       ds_senha		as Senha
 	FROM tb_cliente
 		WHERE nm_cliente LIKE ?;
 	 		OR id_cliente = ?;
         
 -- LOGIN CLIENTE
-SELECT id_cliente 	as Id,
+SELECT id_cliente 	as ID,
 	   nm_cliente 	as Nome,
 	   ds_email 	as Email
 	FROM tb_cliente
@@ -191,7 +192,7 @@ INSERT INTO tb_cartao (id_cliente, nm_titular, ds_cartao, ds_validade, nr_cod_se
 
 -- LISTAR INFO CARTAO + USUARIO
 SELECT tb_cliente.id_cliente 		as IdCliente,
-			      nm_cliente		as Cliente,
+			      nm_cliente		as Nome,
 			      ds_cpf			as CPF,
 			      nm_titular		as Titular,
 			      ds_cartao			as Cartao,
@@ -222,7 +223,7 @@ INSERT INTO tb_pedido (id_produto, id_cliente, id_cartao, id_endereco, nr_pedido
                 
 -- LISTAR PEDIDOS
 SELECT tb_produto.id_produto 				as ProdutoID,
-	   tb_cliente.id_cliente				as Cliente,
+	   tb_cliente.id_cliente				as ClienteID,
 				  nm_produto				as Produto,
                   ds_marca 					as Marca,
 	   tb_cartao.id_cartao 					as Cartao,
@@ -240,8 +241,8 @@ SELECT tb_produto.id_produto 				as ProdutoID,
         INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco;
 
 -- LISTAR STATUS DOS PEDIDOS CONCLUIDOS, ENVIADOS...
-SELECT tb_produto.id_produto 				as Produto,
-				  nm_produto				as produto,
+SELECT tb_produto.id_produto 				as ProdutoID,
+				  nm_produto				as NomeProduto,
 		tb_cartao.id_cartao 				as Cartao,
 				  nm_titular				as Titular,
 	  tb_endereco.id_endereco 				as Endereco,
@@ -299,3 +300,7 @@ UPDATE tb_endereco
 -- DELETAR ENDEREÇO
 DELETE FROM tb_endereco
 	WHERE id_endereco = ?;
+
+
+-- TABELA CARRINHO --
+-- INSERIR COMPRAS NO CARRINHO
