@@ -303,4 +303,36 @@ DELETE FROM tb_endereco
 
 
 -- TABELA CARRINHO --
--- INSERIR COMPRAS NO CARRINHO
+-- INSERIR PRODUTOS NO CARRINHO
+INSERT INTO tb_carrinho(id_cliente, id_produto, qtd_produto)
+					VALUES (?, ?, ?);
+
+-- LISTAR ITENS DE APENAS UM USUARIO
+SELECT tb_carrinho.id_carrinho		as CarrinhoID,
+	   tb_cliente.id_cliente		as ClienteID,
+       tb_produto.id_produto		as ProdutoID,
+       tb_produto.nm_produto		as ProdutoNome,
+       tb_produto.ds_marca			as ProdutoMarca,
+       tb_produto.vl_valor			as ProdutoValor,
+       qtd_produto					as Quantidade
+	FROM tb_carrinho
+		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_carrinho.id_cliente
+		INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto
+			WHERE tb_cliente.id_cliente = ?
+				ORDER BY nm_produto ASC;
+
+-- ALTERAR QUANTIDADE DE UM PRODUTO ESPECIFICO NO CARRINHO
+UPDATE tb_carrinho
+		INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto
+			SET tb_produto.id_produto		= ?,
+				qtd_produto					= ?
+					WHERE id_cliente = ?;
+
+-- REMOVER ITEM DO CARRINHO
+DELETE FROM tb_carrinho
+	WHERE id_produto = ?
+     AND id_cliente = ?;
+
+-- DELETAR TODOS OS ITENS DO CARRINHO
+DELETE FROM tb_carrinho
+	WHERE id_cliente = ?;

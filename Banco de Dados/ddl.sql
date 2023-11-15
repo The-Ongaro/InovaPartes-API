@@ -95,8 +95,8 @@ FOREIGN KEY (id_endereco) REFERENCES tb_endereco (id_endereco) ON DELETE CASCADE
 
 CREATE TABLE tb_carrinho (
 id_carrinho			INT PRIMARY KEY AUTO_INCREMENT,
-id_cliente			INT,
-id_produto			INT,
+id_cliente			INT NOT NULL,
+id_produto			INT NOT NULL,
 qtd_produto			INT,
 FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE,
 FOREIGN KEY (id_produto) REFERENCES tb_produto (id_produto) ON DELETE CASCADE
