@@ -59,7 +59,7 @@ export async function buscarPorNomeCpf(cpf, nome) {
             img_cliente     as Perfil
                 FROM tb_cliente
                     WHERE ds_cpf = ?
-                       OR nm_cliente = ?`
+                       OR nm_cliente LIKE ?`
 
     const [resposta] = await conexao.query(comando, [cpf, `%${nome}%`]);
     return resposta;
