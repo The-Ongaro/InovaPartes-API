@@ -50,7 +50,7 @@ export async function loginAdm(email, cpf, senha) {
 
 export async function buscarPorCpfNome(cpf, nome) {
     const comando =
-    `SELECT id_adm      as ID,
+    `SELECT id_adm      as Id,
             nm_adm      as Nome,
             ds_email    as Email,
             ds_cpf      as CPF,
@@ -75,7 +75,7 @@ export async function buscarPorEmail(email) {
 
 export async function listarAdm() {
     const comando =
-    `SELECT id_adm      as ID,
+    `SELECT id_adm      as Id,
             nm_adm      as Nome,
             ds_cpf      as CPF,
             ds_email    as Email

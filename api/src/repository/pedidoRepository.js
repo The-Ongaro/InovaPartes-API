@@ -15,7 +15,7 @@ export async function listarPedidos() {
     const comando =
     `SELECT tb_pedido.id_pedido                 as PedidoID,
             tb_produto.id_produto 				as ProdutoID,
-            tb_cliente.nm_cliente               as Nome,
+            tb_cliente.nm_cliente               as Cliente,
                        nm_produto				as Produto,
                        ds_marca 				as Marca,
              tb_cartao.id_cartao 				as Cartao,

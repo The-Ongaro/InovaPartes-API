@@ -13,7 +13,7 @@ export async function cadastrarProdutos(produto) {
 
 export async function listarProdutos() {
     const comando =
-    `SELECT 		 id_produto		as ID, 
+    `SELECT 		 id_produto		as Id, 
         tb_categoria.ds_categoria	as Categoria,
                      nm_produto		as Produto,
                      ds_marca		as Marca,
@@ -33,7 +33,7 @@ export async function listarProdutos() {
 
 export async function listarPorNome(nome, categoria, marca) {
     const comando =
-    `SELECT  id_produto         as ID,
+    `SELECT  id_produto         as Id,
              ds_categoria	    as Categoria,
              nm_produto		    as Produto,
              ds_marca		    as Marca,
@@ -55,7 +55,7 @@ export async function listarPorNome(nome, categoria, marca) {
 
 export async function listarPorId(id) {
     const comando = 
-    `SELECT  id_produto         as ID,
+    `SELECT  id_produto         as Id,
              ds_categoria	    as Categoria,
              nm_produto		    as Produto,
              ds_marca		    as Marca,
@@ -115,7 +115,7 @@ export async function inserirCategoria(categoria) {
 export async function listarCategoria() {
     const comando =
     `SELECT ds_categoria    as Categoria,
-            id_categoria    as ID
+            id_categoria    as Id
         FROM tb_categoria`
 
     const [resposta] = await conexao.query(comando);

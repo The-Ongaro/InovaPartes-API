@@ -141,7 +141,7 @@ server.put('/usuario/:id', async (req, resp) => {
 
         if(!cliente.senha)
             throw new Error('Senha inválida.');
-        const errorSenha = schema.validate(cadastrar.senha, {details: true});
+        const errorSenha = schema.validate(cliente.senha, {details: true});
         if(errorSenha !== 0) {
             for(let item of errorSenha) {
                 throw new Error(`${item.message}`);

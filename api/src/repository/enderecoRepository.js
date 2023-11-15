@@ -15,7 +15,7 @@ export async function listarEndCliente() {
     const comando =
     `SELECT tb_endereco.id_endereco     as IdEndereco,
             tb_cliente.id_cliente       as IdCliente,
-                       nm_cliente	    as Nome,
+                       nm_cliente	    as Cliente,
                        nm_logradouro    as Logradouro,
                        ds_num_casa      as Numero,
                        ds_complemento   as Complemento,

@@ -15,7 +15,7 @@ export async function listarInfoCartao() {
     const comando =
     `SELECT tb_cliente.id_cliente 		    as IdCliente,
              tb_cartao.id_cartao            as IdCartao,
-                       nm_cliente		    as Nome,
+                       nm_cliente		    as Cliente,
                        ds_cpf			    as CPF,
                        nm_titular		    as Titular,
                        ds_cartao			as Cartao,

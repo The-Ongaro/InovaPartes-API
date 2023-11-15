@@ -22,8 +22,8 @@ export async function alterarImgCliente(imagem, id) {
 
 export async function loginCliente(email, cpf, senha) {
     const comando = 
-    `SELECT id_cliente 	as ID,
-            nm_cliente 	as Nome,
+    `SELECT id_cliente 	as Id,
+            nm_cliente 	as Cliente,
             ds_email 	as Email,
             ds_cpf      as CPF
 	            FROM tb_cliente
@@ -37,8 +37,8 @@ export async function loginCliente(email, cpf, senha) {
 
 export async function listarclientes() {
     const comando = 
-    `SELECT id_cliente      as ID,
-            nm_cliente      as Nome,
+    `SELECT id_cliente      as Id,
+            nm_cliente      as Cliente,
             ds_cpf	        as CPF,
             ds_telefone     as Telefone,
             ds_email		as Email,
@@ -51,8 +51,8 @@ export async function listarclientes() {
 
 export async function buscarPorNomeCpf(cpf, nome) {
     const comando = 
-    `SELECT id_cliente      as ID,
-            nm_cliente      as Nome,
+    `SELECT id_cliente      as Id,
+            nm_cliente      as Cliente,
             ds_cpf          as CPF,
             ds_telefone     as Telefone,
             ds_email        as Email,

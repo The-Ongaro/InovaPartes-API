@@ -48,7 +48,10 @@
 
 (5) BUSCAR POR NOME OU CPF
     VERBO: GET          CAMINHO: http://localhost:5011/adm/busca?nome=
-                                 http://localhost:5011/adm/busca?cpf=         
+                                 http://localhost:5011/adm/busca?cpf=   
+
+    RETORNA:
+          
 
 (6) LISTAR TODOS ADM
     VERBO: GET          CAMINHO: http://localhost:5011/adm             
