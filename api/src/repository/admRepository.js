@@ -33,18 +33,18 @@ export async function alterarAdm(id, admin) {
     return resposta.affectedRows;
 }
 
-export async function loginAdm(email, cpf, senha) {
+export async function loginAdm(cpf, email, senha) {
     const comando =
-    `SELECT id_adm 	    as ID,
+    `SELECT id_adm 	    as Id,
             nm_adm	    as Nome,
             ds_email    as Email,
             ds_cpf      as CPF
                 FROM tb_adm
-                    WHERE ds_email = ? 
-                        OR ds_cpf = ?
+                    WHERE ds_cpf = ? 
+                        OR ds_email = ?
                             AND ds_senha = ?`
 
-    const [resposta] = await conexao.query(comando, [email, cpf, senha]);
+    const [resposta] = await conexao.query(comando, [cpf, email, senha]);
     return resposta[0];
 }
 

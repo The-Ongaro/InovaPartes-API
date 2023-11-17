@@ -109,8 +109,8 @@ server.put('/adm/:id', async (req, resp) => {
 
 server.post('/adm/login', async (req, resp) => {
     try {
-        const {email, cpf, senha} = req.body;
-        const resposta = await loginAdm(email, cpf, senha);
+        const {cpf, email, senha} = req.body;
+        const resposta = await loginAdm(cpf, email, senha);
 
         if(!resposta)
             throw new Error('Administrador inválido.');
