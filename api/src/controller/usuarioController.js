@@ -75,12 +75,11 @@ server.put('/usuario/:id/perfil', upload.single('perfil'), async (req, resp) => 
 
 server.post('/usuario/login', async (req, resp) => {
     try {
-        const {email, cpf, senha} = req.body;
-        const resposta = await loginCliente(email, cpf, senha);
-
+        const {cpf, email, senha} = req.body;
+        const resposta = await loginCliente(cpf, email, senha);
+        
         if(!resposta)
             throw new Error('Credenciais inválidas.');
-
         resp.send(resposta);
 
     } catch (err) {
