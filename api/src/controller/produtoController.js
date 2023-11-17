@@ -137,6 +137,7 @@ server.put('/produto/:id', async (req, resp) => {
             throw new Error('O produto não pode ser alterado.');
         else
             resp.status(200).send();
+        
     } catch (err) {
         resp.status(400).send({
             erro: err.message

@@ -1,2 +1,49 @@
 -- ENDPOINTS DA tb_carrinho --
 
+(1) INSERIR ITENS NO CARRINHO 
+    VERBO: POST         CAMINHO: http://localhost:5011/carrinho
+
+    {
+        "cliente": 7,
+        "produto": 1,
+        "qtd": 5
+    }
+
+    RETORNA:
+
+   {
+        "cliente": 7,
+        "produto": 1,
+        "qtd": 5,
+        "id": 1
+    }
+
+(2) LISTAR ITENS DO CLIENTE NO CARRINHO 
+    VERBO: GET          CAMINHO: http://localhost:5011/carrinho/:id => ID DO CLIENTE
+
+    RETORNA: 
+
+    {
+        "CarrinhoID": 1,
+        "ClienteID": 7,
+        "ProdutoID": 1,
+        "ProdutoNome": "Turbina Chevette",
+        "ProdutoMarca": "Bagio",
+        "ProdutoValor": "1900.00",
+        "Quantidade": 5
+    }
+
+(3) ALTERAR A QUANTIDADE DE DETERMINADO PRODUTO 
+    VERBO: PUT          CAMINHO: http://localhost:5011/carrinho:qtd/:idCliente/:idProduto
+
+    RETORNA: 
+    STATUS: 200 OK
+
+(4) REMOVER DETERMINADO ITEM DO CARRINHO
+    VERBO: DELETE       CAMINHO: http://localhost:5011/carrinho/produto/:idCliente/:idProduto
+
+    RETORNA:
+    STATUS: 200 OK
+
+(5) REMOVER TODOS OS ITENS DO CARRINHO
+    VERBO: DELETE      CAMINHO: http://localhost:5011/carrinho/:id => ID DO CLIENTE

@@ -12,5 +12,60 @@
         "status": "Enviar"
     }
 
+    RETORNA:
 
+    {
+        "PedidoID": 1,
+        "ProdutoID": 1,
+        "Cliente": "Bruno",
+        "Produto": "Turbina Chevette",
+        "Marca": "Bagio",
+        "Cartao": 1,
+        "Titular": "Yago Fonseca",
+        "Endereco": 2,
+        "Logradouro": "Rua André Pernet",
+        "Cidade": "São Paulo",
+        "Estado": "SP",
+        "Quantidade": 2,
+        "StatusPedido": "enviar"
+    }
 
+(2) LISTAR PEDIDOS
+    VERBO: GET              CAMINHO:http://localhost:5011/pedido
+
+(3) LISTAR PEDIDOS POR STATUS
+    VERBO: GET              CAMINHO: http://localhost:5011/pedido/busca?status=
+
+    RETORNA: 
+
+    {
+        "IDPedido": 1,
+        "ProdutoID": 1,
+        "ClienteID": 1,
+        "ProdutoNome": "Turbina Chevette",
+        "Cartao": 1,
+        "Titular": "Yago Fonseca",
+        "Endereco": 2,
+        "Logradouro": "Rua André Pernet",
+        "CEP": "04890-010",
+        "Cidade": "São Paulo",
+        "Estado": "SP",
+        "Quantidade": 2,
+        "StatusPedido": "enviar"
+    }
+
+(4) ALTERAR STATUS DE PEDIDOS
+    VERBO: PUT              CAMINHO: http://localhost:5011/pedido/:id => ID DO PEDIDO
+
+    {
+        "status": "enviado"
+    }
+
+    RETORNA:
+    STATUS: 200 OK
+
+(5) DELETAR PEDIDO
+    VERBO: DELETE           CAMINHO: http://localhost:5011/pedido/:id => ID DO PEDIDO
+
+    RETORNA:
+    STATUS: 200 OK

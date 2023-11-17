@@ -42,7 +42,7 @@
     VERBO: DELETE       CAMINHO: http://localhost:5011/produto/:id
 
 
--- TABELA CATRGORIA --
+-- TABELA CATEGORIA --
 (1) ADICIONAR CATEGORIA
     VERBO: POST         CAMINHO: http://localhost:5011/categoria
 
@@ -62,29 +62,28 @@
 
     RETORNA:
 
-    [
+    
         {
             "Categoria": "Alta Performance",
             "ID": 1
         }
-    ]
+    
     
 
 -- ENDPOINTS DA tb_img_produto --
--- TABELA IMAGEM DOS PRODUTOS (AQUI É ONDE O FILHO CHORA E A MÃE NÃO VÊ)--
+-- TABELA IMAGEM DOS PRODUTOS --
 (1) ADICIONAR IMAGEM
     VERBO: POST         CAMINHO: http://localhost:5011/imagem
 
     {
         "produto": 1, => ID DO PRODUTO
-        "imagem": "" => PASSA VAZIO, ZÉ.
+        "imagem": "" => PASSA VAZIO.
     }
 
 (2) ALTERAR IMAGEM (PRESTA ATENÇÃO AQUI!)
     VERBO: put          CAMINHO: http://localhost:5011/imagem/:id => ESSE ID É O id_img_produto QUE VOCÊ CRIOU ANTERIORMENTE.
     FILES: 'capa'
 
-    SE TIVER DÚVIDA EM COMO ADICIONAR A IMAGEM ME CHAMA, ESTAREI A DISPOSIÇÃO, OU NÃO.
 
 (3) LISTAR AS IMAGENS (NÃO SABIA SE IA QUERER OU NÃO, AI EU FIZ)
     VERBO: GET          CAMINHO: http://localhost:5011/imagem
@@ -93,7 +92,7 @@
     VERBO: GET          CAMINHO: http://localhost:5011/imagem/:id => ID DO PRODUTO QUE DESEJA, MAS A IMAGEM TEM QUE SER ADIONADA ANTES, SE NÃO DA ERRADO.
 
     E ASSIM RETORNA A BRINCADEIRA:
-    [
+    
         {
             "Nome": "FT400",
             "Marca": "FUELTECH",
@@ -105,4 +104,3 @@
             "Quantidade": 1,
             "Imagem": "storage\\imgProdutos\\f1534cc3dd8880824e1c348dd78df6c6"
         }
-]

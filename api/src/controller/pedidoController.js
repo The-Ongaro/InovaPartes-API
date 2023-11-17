@@ -56,7 +56,7 @@ server.get('/pedido/busca', async (req, resp) => {
         const resposta = await listarStatusPedidos(status);
         
         if(resposta.length === 0)
-            throw new Error('Status inválido.');
+            throw new Error('Não há nenhum status correspondente.');
 
         resp.send(resposta);
 

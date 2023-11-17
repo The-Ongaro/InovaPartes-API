@@ -323,10 +323,11 @@ SELECT tb_carrinho.id_carrinho		as CarrinhoID,
 
 -- ALTERAR QUANTIDADE DE UM PRODUTO ESPECIFICO NO CARRINHO
 UPDATE tb_carrinho
-		INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto
-			SET tb_produto.id_produto		= ?,
-				qtd_produto					= ?
-					WHERE id_cliente = ?;
+        INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_carrinho.id_cliente
+            INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto
+                SET qtd_produto			= ?
+                        WHERE tb_cliente.id_cliente = ?
+                            AND tb_produto.id_produto = ?;
 
 -- REMOVER ITEM DO CARRINHO
 DELETE FROM tb_carrinho
