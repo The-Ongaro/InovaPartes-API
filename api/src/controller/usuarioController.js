@@ -141,12 +141,12 @@ server.put('/usuario/:id', async (req, resp) => {
 
         if(!cliente.senha)
             throw new Error('Senha inválida.');
-        const errorSenha = schema.validate(cliente.senha, {details: true});
-        if(errorSenha !== 0) {
-            for(let item of errorSenha) {
-                throw new Error(`${item.message}`);
-            }
-        }
+        // const errorSenha = schema.validate(cliente.senha, {details: true});
+        // if(errorSenha !== 0) {
+        //     for(let item of errorSenha) {
+        //         throw new Error(`${item.message}`);
+        //     }
+        // }
 
         const resposta = await alterarInfoCliente(id, cliente);
         if(resposta !== 1)
