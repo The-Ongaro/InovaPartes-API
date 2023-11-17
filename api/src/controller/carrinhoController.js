@@ -1,4 +1,4 @@
-import { alterarQtdCarrinho, deletarItensCarrinho, inserirItemCarrinho, listarItensCarrinho, removerItemCarrinho } from "../repository/CarrinhoRepository.js";
+import { alterarQtdCarrinho, deletarItensCarrinho, inserirItemCarrinho, listarItensCarrinho, removerItemCarrinho } from "../repository/carrinhoRepository.js";
 
 import { Router } from "express";
 const server = Router();
