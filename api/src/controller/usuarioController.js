@@ -7,15 +7,15 @@ import passwordValidator from 'password-validator';
 const server = Router();
 const upload = multer({dest: 'storage/usuarioPerfil'});
 
-const schema = new passwordValidator();
-schema
-    .is().min(8, 'A quantidade miníma são 8 caractéres.')
-    .is().max(100, 'A quantidade máxima é de 100 caractéres.') 
-    .has().uppercase(1, 'Adicione no minímo 1 caractére maiúsculo.') 
-    .has().lowercase(1, 'Adicione no minímo 1 caractére minúsculo.') 
-    .has().digits(1, 'Adicione no minímo 1 digito numérico.') 
-    .has().not().spaces(true, 'Não adicione espaços na senha.')
-    .has().symbols(1, 'Adicione no minímo 1 caractére especial (ex.: @, #, !)')
+// const schema = new passwordValidator();
+// schema
+//     .is().min(8, 'A quantidade miníma são 8 caractéres.')
+//     .is().max(100, 'A quantidade máxima é de 100 caractéres.') 
+//     .has().uppercase(1, 'Adicione no minímo 1 caractére maiúsculo.') 
+//     .has().lowercase(1, 'Adicione no minímo 1 caractére minúsculo.') 
+//     .has().digits(1, 'Adicione no minímo 1 digito numérico.') 
+//     .has().not().spaces(true, 'Não adicione espaços na senha.')
+//     .has().symbols(1, 'Adicione no minímo 1 caractére especial (ex.: @, #, !)')
 
 
 server.post('/usuario', async (req, resp) => {
@@ -38,12 +38,12 @@ server.post('/usuario', async (req, resp) => {
             
         if(!cadastrar.senha)
             throw new Error('Senha inválida.');
-        const errorSenha = schema.validate(cadastrar.senha, {details: true});
-        if(errorSenha !== 0) {
-            for(let item of errorSenha) {
-                throw new Error(`${item.message}`);
-            }
-        }
+        // const errorSenha = schema.validate(cadastrar.senha, {details: true});
+        // if(errorSenha !== 0) {
+        //     for(let item of errorSenha) {
+        //         throw new Error(`${item.message}`);
+        //     }
+        // }
 
         const usuarioCadastrado = await cadastroCliente(cadastrar);
         resp.send(usuarioCadastrado);
