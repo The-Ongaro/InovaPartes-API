@@ -34,8 +34,7 @@ export async function listarProdutos() {
                      ds_promocao	as promocao,
                      vl_valor		as valor,
                      ds_detalhes	as detalhes,
-                     nr_quantidade	as quantidade,
-                     ds_imagem      as imagem
+                     nr_quantidade	as quantidade
                  FROM tb_produto
                     INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
                         ORDER BY id`

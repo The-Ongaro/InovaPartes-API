@@ -18,7 +18,7 @@ export async function listarPedidos() {
             tb_cliente.nm_cliente               as cliente,
                        nm_produto				as produto,
                        ds_marca 				as marca,
-             tb_cartao.id_cartao 				as cartao,
+             tb_cartao.id_cartao 				as cartaoId,
                        nm_titular				as titular,
            tb_endereco.id_endereco 				as endereco,
                        nm_logradouro			as logradouro,

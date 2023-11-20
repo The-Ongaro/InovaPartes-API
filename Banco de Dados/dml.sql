@@ -6,31 +6,31 @@ INSERT INTO tb_produto (id_categoria, nm_produto, ds_marca, ds_modelo, bt_dispon
 				VALUES (?, ?, ? ?, ?, ?, ?, ?, ?);
 
 -- LISTAR TODOS OS PRODUTOS 
-SELECT 				 id_produto		as ID, 
-		tb_categoria.ds_categoria	as Categoria,
-					 nm_produto		as Produto,
-					 ds_marca		as Marca,
-                     ds_modelo		as Modelo,
-                     bt_disponivel	as Disponivel,
-                     ds_promocao	as Promocao,
-                     vl_valor		as Valor,
-                     ds_detalhes	as Detalhes,
-                     nr_quantidade	as Quantidade
+SELECT 				 id_produto		as id, 
+		tb_categoria.ds_categoria	as categoria,
+					 nm_produto		as produto,
+					 ds_marca		as marca,
+                     ds_modelo		as modelo,
+                     bt_disponivel	as disponivel,
+                     ds_promocao	as promocao,
+                     vl_valor		as valor,
+                     ds_detalhes	as detalhes,
+                     nr_quantidade	as quantidade
                      FROM tb_produto
 		INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
 			ORDER BY Id;
             
 -- LISTAR PRODUTOS POR CATEGORIA, NOME, ID OU MARCA
-SELECT  id_produto		as ID,
-		ds_categoria	as Categoria,
-        nm_produto		as Produto,
-        ds_marca		as Marca,
-        ds_modelo		as Modelo,
-        vl_valor		as Valor,
-        ds_detalhes		as Detalhes,
-        nr_quantidade	as Quantidade,
-        bt_disponivel	as Disponivel,
-        ds_promocao		as Promocao
+SELECT  id_produto		as id,
+		ds_categoria	as categoria,
+        nm_produto		as produto,
+        ds_marca		as marca,
+        ds_modelo		as modelo,
+        vl_valor		as valor,
+        ds_detalhes		as detalhes,
+        nr_quantidade	as quantidade,
+        bt_disponivel	as disponivel,
+        ds_promocao		as promocao
         FROM tb_produto
 	INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
 		 WHERE tb_categoria.ds_categoria LIKE ?
@@ -68,23 +68,22 @@ INSERT INTO tb_img_produto (id_produto, ds_img)
 				VALUES (?, ?);
                 
 -- LISTAR IMAGENS
-SELECT id_img_produto 	as imgID,
-	   id_produto 		as produtoID,
-       ds_img 			as Imagem
+SELECT id_img_produto 	as imagemId,
+	   id_produto 		as produtoId,
+       ds_img 			as imagem
 		FROM tb_img_produto;
         
 -- LISTAR IMAGEM COM INFO DO PRODUTO
-SELECT id_produto		as ID,
-	   nm_produto 		as Nome,
-	   ds_marca 		as Marca,
-       ds_modelo 		as Modelo,
-       bt_disponivel 	as Disponivel,
-       ds_promocao		as Promocao,
-       bt_disponivel 	as Disponivel,
-       vl_valor 		as Valor,
-       ds_detalhes 		as Detalhes,
-       nr_quantidade 	as Quantidade,
-       ds_img 			as Imagem
+SELECT id_produto		as id,
+	   nm_produto 		as nome,
+	   ds_marca 		as marca,
+       ds_modelo 		as modelo,
+       bt_disponivel 	as disponivel,
+       ds_promocao		as promocao,
+       vl_valor 		as valor,
+       ds_detalhes 		as detalhes,
+       nr_quantidade 	as quantidade,
+       ds_img 			as imagem
 		FROM tb_img_produto
 			INNER JOIN tb_produto ON tb_produto.id_produto = tb_img_produto.id_produto
 				WHERE tb_produto.id_produto = ?;
@@ -125,10 +124,10 @@ SELECT id_adm 	    as id,
             	WHERE (ds_cpf = ? OR ds_email = ?) AND ds_senha = ?
 
 -- LISTAR TODOS ADM
-SELECT id_adm	as ID,
-	   nm_adm	as Nome,
-	   ds_cpf	as CPF,
-	   ds_email	as Email
+SELECT id_adm	as id,
+	   nm_adm	as nome,
+	   ds_cpf	as cpf,
+	   ds_email	as email
 	   		FROM tb_adm;
 
 -- DELETAR ADM
@@ -146,18 +145,18 @@ UPDATE tb_cliente
 		WHERE id_cliente = ?;
                 
 -- LISTAR TODOS CLIENTES
-SELECT nm_cliente 	as Nome,
-	   ds_cpf	  	as CPF,
-       ds_telefone 	as Telefone,
-       ds_email		as Email
+SELECT nm_cliente 	as nome,
+	   ds_cpf	  	as cpf,
+       ds_telefone 	as telefone,
+       ds_email		as email
 	FROM tb_cliente;
                 
 -- LISTAR CLIENTES POR NOME OU ID
-SELECT nm_cliente	as Nome,
-	   ds_cpf		as CPF,
-       ds_telefone	as Telefone,
-       ds_email		as Email,
-       ds_senha		as Senha
+SELECT nm_cliente	as nome,
+	   ds_cpf		as cpf,
+       ds_telefone	as telefone,
+       ds_email		as email,
+       ds_senha		as senha
 	FROM tb_cliente
 		WHERE nm_cliente LIKE ?;
 	 		OR id_cliente = ?;
@@ -190,14 +189,14 @@ INSERT INTO tb_cartao (id_cliente, nm_titular, ds_cartao, ds_validade, nr_cod_se
 				VALUES (?, ?, ?, ?, ?, ?);
 
 -- LISTAR INFO CARTAO + USUARIO
-SELECT tb_cliente.id_cliente 		as IdCliente,
-			      nm_cliente		as Nome,
-			      ds_cpf			as CPF,
-			      nm_titular		as Titular,
-			      ds_cartao			as Cartao,
-			      ds_validade  		as Validade,
-			      nr_cod_seguranca 	as CodSeguranca,
-			      nr_parcelas		as Parcelas
+SELECT tb_cliente.id_cliente 		as clienteId,
+			      nm_cliente		as nome,
+			      ds_cpf			as cpf,
+			      nm_titular		as titular,
+			      ds_cartao			as cartao,
+			      ds_validade  		as validade,
+			      nr_cod_seguranca 	as codSeguranca,
+			      nr_parcelas		as parcelas
 		  FROM tb_cartao
 			 INNER JOIN  tb_cliente ON tb_cliente.id_cliente = tb_cartao.id_cliente
 				 ORDER BY IdCliente;
@@ -221,18 +220,18 @@ INSERT INTO tb_pedido (id_produto, id_cliente, id_cartao, id_endereco, nr_pedido
 				VALUES (?, ?, ?, ?, ?, ?, ?);
                 
 -- LISTAR PEDIDOS
-SELECT tb_produto.id_produto 				as ProdutoID,
-	   tb_cliente.id_cliente				as ClienteID,
-				  nm_produto				as Produto,
-                  ds_marca 					as Marca,
-	   tb_cartao.id_cartao 					as Cartao,
-				  nm_titular				as Titular,
-       tb_endereco.id_endereco 				as Endereco,
-                  nm_logradouro				as Logradouro,
-                  ds_cidade					as Cidade,
-                  ds_estado					as Estado,
-       tb_pedido.nr_quantidade 				as Quantidade,
-                  ds_status 				as StatusPedido
+SELECT tb_produto.id_produto 				as produtoId,
+	   tb_cliente.id_cliente				as clienteId,
+				  nm_produto				as produto,
+                  ds_marca 					as marca,
+	   tb_cartao.id_cartao 					as cartaoId,
+				  nm_titular				as titular,
+       tb_endereco.id_endereco 				as endereco,
+                  nm_logradouro				as logradouro,
+                  ds_cidade					as cidade,
+                  ds_estado					as estado,
+       tb_pedido.nr_quantidade 				as quantidade,
+                  ds_status 				as statusPedido
 	FROM tb_pedido
 		INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
 		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
@@ -240,17 +239,17 @@ SELECT tb_produto.id_produto 				as ProdutoID,
         INNER JOIN tb_endereco ON tb_endereco.id_endereco = tb_pedido.id_endereco;
 
 -- LISTAR STATUS DOS PEDIDOS CONCLUIDOS, ENVIADOS...
-SELECT tb_produto.id_produto 				as ProdutoID,
-				  nm_produto				as NomeProduto,
-		tb_cartao.id_cartao 				as Cartao,
-				  nm_titular				as Titular,
-	  tb_endereco.id_endereco 				as Endereco,
-                  nm_logradouro				as Logradouro,
-                  ds_cep					as CEP,
-                  ds_cidade					as Cidade,
-                  ds_estado					as Estado,
-		tb_pedido.nr_quantidade 			as Quantidade,
-                  ds_status 				as StatusPedido
+SELECT tb_produto.id_produto 				as produtoId,
+				  nm_produto				as nomeProduto,
+		tb_cartao.id_cartao 				as cartao,
+				  nm_titular				as titular,
+	  tb_endereco.id_endereco 				as endereco,
+                  nm_logradouro				as logradou,
+                  ds_cep					as cep,
+                  ds_cidade					as cidade,
+                  ds_estado					as estado,
+		tb_pedido.nr_quantidade 			as quantidade,
+                  ds_status 				as statusPedido
 		FROM tb_pedido
 			INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
 			INNER JOIN tb_cartao ON tb_cartao.id_cartao = tb_pedido.id_cartao
@@ -272,18 +271,18 @@ INSERT INTO tb_endereco (id_cliente, nm_logradouro, ds_num_casa, ds_complemento,
 				VALUES (?, ?, ?, ?, ?, ?, ?, ?);
                 
 -- LISTAR ENDERECO + USUARIO
-SELECT tb_cliente.id_cliente 	as IdCliente,
-	   nm_cliente				as Nome,
-       nm_logradouro 			as Logradouro,
-       ds_num_casa 				as Numero,
-       ds_complemento 			as Complemento,
-       ds_cep 					as CEP,
-       ds_bairro 				as Bairro,
-       ds_cidade 				as Cidade,
-       ds_estado 				as Estado
+SELECT tb_cliente.id_cliente 	as clienteId,
+	   nm_cliente				as cliente,
+       nm_logradouro 			as logradouro,
+       ds_num_casa 				as numero,
+       ds_complemento 			as complemento,
+       ds_cep 					as cep,
+       ds_bairro 				as bairro,
+       ds_cidade 				as cidade,
+       ds_estado 				as estado
 	FROM tb_endereco
 		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_endereco.id_cliente
-			ORDER BY IdCliente;
+			ORDER BY clienteId;
             
 -- ALTERAR ENDERECO
 UPDATE tb_endereco
@@ -307,13 +306,13 @@ INSERT INTO tb_carrinho(id_cliente, id_produto, qtd_produto)
 					VALUES (?, ?, ?);
 
 -- LISTAR ITENS DE APENAS UM USUARIO
-SELECT tb_carrinho.id_carrinho		as CarrinhoID,
-	   tb_cliente.id_cliente		as ClienteID,
-       tb_produto.id_produto		as ProdutoID,
-       tb_produto.nm_produto		as ProdutoNome,
-       tb_produto.ds_marca			as ProdutoMarca,
-       tb_produto.vl_valor			as ProdutoValor,
-       qtd_produto					as Quantidade
+SELECT tb_carrinho.id_carrinho		as carrinhoId,
+	   tb_cliente.id_cliente		as clienteId,
+       tb_produto.id_produto		as produtoId,
+       tb_produto.nm_produto		as produtoNome,
+       tb_produto.ds_marca			as produtoMarca,
+       tb_produto.vl_valor			as produtoValor,
+       qtd_produto					as quantidade
 	FROM tb_carrinho
 		INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_carrinho.id_cliente
 		INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto
