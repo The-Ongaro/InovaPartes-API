@@ -15,15 +15,16 @@
     RETORNA:
 
     {
-        "cliente": 2,
-        "titular": "Catarina Ongaro",
-        "numero": "0000 0000 0000 0000",
-        "validade": "12/28",
-        "codSeguranca": 369,
-        "parcelas": 2,
-        "id": 2
+        "clienteId": 1,
+        "CartaoId": 1,
+        "cliente": "Catarina",
+        "cpf": "123.123.123-00",
+        "titular": "Yago Fonseca",
+        "cartao": "0000 0000 0000 0000",
+        "validade": "12/23",
+        "codSeguranca": 123,
+        "parcelas": 2
     }
-
 
 
 (2) LISTAR TODOS CARTÕES
@@ -42,9 +43,13 @@
         "parcelas": 2
     }
 
-    RETORNA: STATUS: 200 OK
+    RETORNA: 
+    STATUS: 200 OK
 
     
 
 (4) DELETAR CADASTRO DE ALGUM CARTÃO
     VERBO: DELETE           CAMINHO: http://localhost:5011/cartao/:id => DO CARTÃO
+
+    RETORNA: 
+    STATUS: 200 OK

@@ -8,8 +8,7 @@
         "cpf": "123.123.123-00",
         "telefone": "(11) 5921-5000",
         "email": "catarina@gmail.com",
-        "senha": "abc@321",
-        "imagem": ""
+        "senha": "abc@321"
     }
 
     RETORNA:

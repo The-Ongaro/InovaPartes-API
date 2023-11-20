@@ -48,6 +48,23 @@ server.get('/cartao', async (req, resp) => {
     }
 })
 
+server.get('/cartao/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const dados = await listarInfoCartao(id);
+
+        if(dados.length === 0)
+            throw new Error('Não há informações relacionadas a esse cartão.');
+
+        resp.send(dados);
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
 server.put('/cartao/:id', async (req, resp) => {
     try {
         const {id} = req.params;
