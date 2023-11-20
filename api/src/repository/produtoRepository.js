@@ -102,6 +102,19 @@ export async function alterarProduto(id, produto) {
 
     const [resposta] = await conexao.query(comando, [produto.categoria, produto.nome, produto.marca, produto.modelo, produto.disponivel,
     produto.promocao, produto.valor, produto.detalhes, produto.quantidade, id]);
+
+    console.log('produtoRepositoty tem conexão');
+    console.log(produto.categoria, 'Repository');
+    console.log(produto.nome, 'Repository');
+    console.log(produto.marca, 'Repository');
+    console.log(produto.modelo, 'Repository');
+    console.log(produto.disponivel, 'Repository');
+    console.log(produto.promocao, 'Repository');
+    console.log(produto.valor, 'Repository');
+    console.log(produto.detalhes, 'Repository');
+    console.log(produto.quantidade, 'Repository');
+    console.log(id, 'Repository');
+
     return resposta.affectedRows;
 }
 
