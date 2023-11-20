@@ -14,8 +14,12 @@
         "estado": "SP"
     }  
 
+
+
 (2) LISTAR ENDEREÇO
     VERBO: GET          CAMINHO: http://localhost:5011/endereco
+
+
 
 (3) ALTERAR ENDEREÇO 
     VERBO: PUT          CAMINHO: http://localhost:5011/endereco/:id => ID DO CLIENTE
@@ -29,6 +33,7 @@
         "cidade": "São Paulo",
         "estado": "SP"
     }  
+
 
 
 (4) DELETAR ENDEREÇO

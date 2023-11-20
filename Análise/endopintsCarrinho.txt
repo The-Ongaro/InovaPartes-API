@@ -18,6 +18,8 @@
         "id": 1
     }
 
+
+
 (2) LISTAR ITENS DO CLIENTE NO CARRINHO 
     VERBO: GET          CAMINHO: http://localhost:5011/carrinho/:id => ID DO CLIENTE
 
@@ -33,17 +35,23 @@
         "Quantidade": 5
     }
 
+
+
 (3) ALTERAR A QUANTIDADE DE DETERMINADO PRODUTO 
     VERBO: PUT          CAMINHO: http://localhost:5011/carrinho:qtd/:idCliente/:idProduto
 
     RETORNA: 
     STATUS: 200 OK
 
+
+
 (4) REMOVER DETERMINADO ITEM DO CARRINHO
     VERBO: DELETE       CAMINHO: http://localhost:5011/carrinho/produto/:idCliente/:idProduto
 
     RETORNA:
     STATUS: 200 OK
+
+
 
 (5) REMOVER TODOS OS ITENS DO CARRINHO
     VERBO: DELETE      CAMINHO: http://localhost:5011/carrinho/:id => ID DO CLIENTE

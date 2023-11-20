@@ -13,19 +13,19 @@ export async function cadastrarProdutos(produto) {
 
 export async function listarProdutos() {
     const comando =
-    `SELECT 		 id_produto		as Id, 
-        tb_categoria.ds_categoria	as Categoria,
-                     nm_produto		as Produto,
-                     ds_marca		as Marca,
-                     ds_modelo		as Modelo,
-                     bt_disponivel	as Disponivel,
-                     ds_promocao	as Promocao,
-                     vl_valor		as Valor,
-                     ds_detalhes	as Detalhes,
-                     nr_quantidade	as Quantidade
+    `SELECT 		 id_produto		as id, 
+        tb_categoria.ds_categoria	as categoria,
+                     nm_produto		as produto,
+                     ds_marca		as marca,
+                     ds_modelo		as modelo,
+                     bt_disponivel	as disponivel,
+                     ds_promocao	as promocao,
+                     vl_valor		as valor,
+                     ds_detalhes	as detalhes,
+                     nr_quantidade	as quantidade
                  FROM tb_produto
                     INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
-                        ORDER BY Id`
+                        ORDER BY id`
     
     const [resposta] = await conexao.query(comando);
     return resposta;
@@ -33,16 +33,16 @@ export async function listarProdutos() {
 
 export async function listarPorNome(nome, categoria, marca) {
     const comando =
-    `SELECT  id_produto         as Id,
-             ds_categoria	    as Categoria,
-             nm_produto		    as Produto,
-             ds_marca		    as Marca,
-             ds_modelo		    as Modelo,
-             vl_valor		    as Valor,
-             ds_detalhes		as Detalhes,
-             nr_quantidade	    as Quantidade,
-             bt_disponivel	    as Disponivel,
-             ds_promocao		as Promocao
+    `SELECT  id_produto         as id,
+             ds_categoria	    as categoria,
+             nm_produto		    as produto,
+             ds_marca		    as marca,
+             ds_modelo		    as modelo,
+             vl_valor		    as valor,
+             ds_detalhes		as detalhes,
+             nr_quantidade	    as quantidade,
+             bt_disponivel	    as disponivel,
+             ds_promocao		as promocao
                 FROM tb_produto
                     INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
                         WHERE nm_produto LIKE ?
@@ -55,16 +55,16 @@ export async function listarPorNome(nome, categoria, marca) {
 
 export async function listarPorId(id) {
     const comando = 
-    `SELECT  id_produto         as Id,
-             ds_categoria	    as Categoria,
-             nm_produto		    as Produto,
-             ds_marca		    as Marca,
-             ds_modelo		    as Modelo,
-             vl_valor		    as Valor,
-             ds_detalhes		as Detalhes,
-             nr_quantidade	    as Quantidade,
-             bt_disponivel	    as Disponivel,
-             ds_promocao		as Promocao
+    `SELECT  id_produto         as id,
+             ds_categoria	    as categoria,
+             nm_produto		    as produto,
+             ds_marca		    as marca,
+             ds_modelo		    as modelo,
+             vl_valor		    as valor,
+             ds_detalhes		as detalhes,
+             nr_quantidade	    as quantidade,
+             bt_disponivel	    as disponivel,
+             ds_promocao		as promocao
                 FROM tb_produto
                     INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
                         WHERE tb_produto.id_produto = ?`
@@ -114,8 +114,8 @@ export async function inserirCategoria(categoria) {
 
 export async function listarCategoria() {
     const comando =
-    `SELECT ds_categoria    as Categoria,
-            id_categoria    as Id
+    `SELECT ds_categoria    as categoria,
+            id_categoria    as id
         FROM tb_categoria`
 
     const [resposta] = await conexao.query(comando);
@@ -156,17 +156,16 @@ export async function listarImg() {
 
 export async function listarImgInfo(id) {
     const comando =
-    `SELECT tb_produto.id_produto      as Id,
-            nm_produto 		           as Nome,
-            ds_marca 		           as Marca,
-            ds_modelo 		           as Modelo,
-            bt_disponivel 	           as Disponivel,
-            ds_promocao		           as Promocao,
-            bt_disponivel 	           as Disponivel,
-            vl_valor 		           as Valor,
-            ds_detalhes 	           as Detalhes,
-            nr_quantidade 	           as Quantidade,
-            ds_img 			           as Imagem
+    `SELECT tb_produto.id_produto      as id,
+            nm_produto 		           as nome,
+            ds_marca 		           as marca,
+            ds_modelo 		           as modelo,
+            bt_disponivel 	           as disponivel,
+            ds_promocao		           as promocao,
+            vl_valor 		           as valor,
+            ds_detalhes 	           as detalhes,
+            nr_quantidade 	           as quantidade,
+            ds_img 			           as imagem
             FROM tb_img_produto
                 INNER JOIN tb_produto ON tb_produto.id_produto = tb_img_produto.id_produto
                     WHERE tb_produto.id_produto = ?`

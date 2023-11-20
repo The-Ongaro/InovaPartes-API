@@ -33,27 +33,26 @@ export async function alterarAdm(id, admin) {
     return resposta.affectedRows;
 }
 
-export async function loginAdm(email, senha) {
+export async function loginAdm(cpf, email, senha) {
     const comando =
-    `SELECT id_adm 	    as Id,
-            nm_adm	    as Nome,
-            ds_email    as Email,
-            ds_cpf      as CPF
+    `SELECT id_adm 	    as id,
+            nm_adm	    as admin,
+            ds_email    as email,
+            ds_cpf      as cpf
                 FROM tb_adm
-                    WHERE ds_email = ?
-                        AND ds_senha = ?`
+                    WHERE (ds_cpf = ? OR ds_email = ?) AND ds_senha = ?`
 
-    const [resposta] = await conexao.query(comando, [email, senha]);
+    const [resposta] = await conexao.query(comando, [cpf, email, senha]);
     return resposta[0];
 }
 
 export async function buscarPorCpfNome(cpf, nome) {
     const comando =
-    `SELECT id_adm      as Id,
-            nm_adm      as Nome,
-            ds_email    as Email,
-            ds_cpf      as CPF,
-            img_adm     as Imagem
+    `SELECT id_adm      as id,
+            nm_adm      as admin,
+            ds_email    as email,
+            ds_cpf      as cpf,
+            img_adm     as imagem
         FROM tb_adm
             WHERE ds_cpf = ?
                 OR nm_adm LIKE ?`
@@ -64,7 +63,7 @@ export async function buscarPorCpfNome(cpf, nome) {
 
 export async function buscarPorEmail(email) {
     const comando =
-    `SELECT ds_email    as Email
+    `SELECT ds_email    as email
         FROM tb_adm
             WHERE ds_email = ?`
 
@@ -74,10 +73,10 @@ export async function buscarPorEmail(email) {
 
 export async function listarAdm() {
     const comando =
-    `SELECT id_adm      as Id,
-            nm_adm      as Nome,
-            ds_cpf      as CPF,
-            ds_email    as Email
+    `SELECT id_adm      as id,
+            nm_adm      as admin,
+            ds_cpf      as cpf,
+            ds_email    as email
                 FROM tb_adm`
 
     const [resposta] = await conexao.query(comando);

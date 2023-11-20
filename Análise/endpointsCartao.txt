@@ -24,8 +24,12 @@
         "id": 2
     }
 
+
+
 (2) LISTAR TODOS CARTÕES
     VERBO: GET              CAMINHO: http://localhost:5011/cartao
+
+
 
 (3) ALTERAR INFO CARTÃO
     VERBO: PUT              CAMINHO: http://localhost:5011/cartao/:id => ID DO CLIENTE
@@ -39,6 +43,8 @@
     }
 
     RETORNA: STATUS: 200 OK
+
+    
 
 (4) DELETAR CADASTRO DE ALGUM CARTÃO
     VERBO: DELETE           CAMINHO: http://localhost:5011/cartao/:id => DO CARTÃO

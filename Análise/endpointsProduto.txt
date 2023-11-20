@@ -4,27 +4,44 @@
     VERBO: POST       CAMINHO: http://localhost:5011/produto
     
     {
-        "categoria": 1,
-        "nome": "Turbina Chevette",
-        "marca": "Bagio",
-        "modelo": "AAA100",
-        "disponivel": true,
-        "promocao": "de 19/08 à 20/08",
-        "valor": "1900.00",
-        "detalhes": "Turbina para Chevette 1.0",
-        "quantidade": 2
+        "categoria": ,
+        "nome": "",
+        "marca": "",
+        "modelo": "",
+        "disponivel": ,
+        "promocao": "",
+        "valor": "",
+        "detalhes": "",
+        "quantidade": 
     }   
+
+    RETORNA: 
+    {
+        "categoria": 1,
+        "nome": "Filtro",
+        "marca": "aaaa",
+        "modelo": "aaaa",
+        "disponivel": 1,
+        "promocao": "aaaaa",
+        "valor": "200.00",
+        "detalhes": "aaaa",
+        "quantidade": 2,
+        "id": 6
+    }
+
 
 (2) LISTAR TODOS OS PRODUTOS
     VERBO: GET        CAMINHO: http://localhost:5011/produto
+
 
 (3) LISTAR PRODUTO POR NOME, CATEGORIA E MARCA
     VERBO: GET        CAMINHO: http://localhost:5011/produto/busca?nome=
                                http://localhost:5011/produto/busca?categoria=
                                http://localhost:5011/produto/busca?marca=
 
+
 (4) ALTERAR PRODUTOS
-    VERBO: PRODUTO     CAMINHO: http://localhost:5011/produto/:id     
+    VERBO: PUT     CAMINHO: http://localhost:5011/produto/:id     
 
     {
         "categoria": 2,
@@ -38,8 +55,15 @@
         "quantidade": 1
     }
 
+    RETORNA: 
+    STATUS: 200 OK
+
+
 (5) DELETAR PRODUTO
     VERBO: DELETE       CAMINHO: http://localhost:5011/produto/:id
+
+    RETORNA:
+    STATUS: 200 OK
 
 
 -- TABELA CATEGORIA --
@@ -47,13 +71,13 @@
     VERBO: POST         CAMINHO: http://localhost:5011/categoria
 
     {
-        "categoria": "Caminhão"
+        "categoria": ""
     }
 
     RETORNA:
 
     {
-        "categoria": "Caminhão",
+        "categoria": "",
         "id": 3
     }
 
@@ -70,6 +94,8 @@
     
     
 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 -- ENDPOINTS DA tb_img_produto --
 -- TABELA IMAGEM DOS PRODUTOS --
 (1) ADICIONAR IMAGEM

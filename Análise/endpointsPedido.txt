@@ -30,8 +30,12 @@
         "StatusPedido": "enviar"
     }
 
+
+
 (2) LISTAR PEDIDOS
     VERBO: GET              CAMINHO:http://localhost:5011/pedido
+
+
 
 (3) LISTAR PEDIDOS POR STATUS
     VERBO: GET              CAMINHO: http://localhost:5011/pedido/busca?status=
@@ -54,6 +58,8 @@
         "StatusPedido": "enviar"
     }
 
+
+
 (4) ALTERAR STATUS DE PEDIDOS
     VERBO: PUT              CAMINHO: http://localhost:5011/pedido/:id => ID DO PEDIDO
 
@@ -63,6 +69,8 @@
 
     RETORNA:
     STATUS: 200 OK
+
+    
 
 (5) DELETAR PEDIDO
     VERBO: DELETE           CAMINHO: http://localhost:5011/pedido/:id => ID DO PEDIDO

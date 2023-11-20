@@ -117,13 +117,12 @@ UPDATE tb_adm
 	WHERE id_adm 	= ?;
     
 -- LOGIN ADM (e-mail ou cpf)
-SELECT id_adm 	as ID,
-	   nm_adm	as Nome,
-       ds_email as Email
-	FROM tb_adm
-		   WHERE ds_email = ? 
-				OR ds_cpf = ?
-					AND ds_senha = ?;
+SELECT id_adm 	    as id,
+        nm_adm	    as admin,
+        ds_email    as email,
+        ds_cpf      as cpf
+            FROM tb_adm
+            	WHERE (ds_cpf = ? OR ds_email = ?) AND ds_senha = ?
 
 -- LISTAR TODOS ADM
 SELECT id_adm	as ID,

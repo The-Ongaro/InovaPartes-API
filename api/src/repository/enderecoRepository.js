@@ -13,19 +13,19 @@ export async function cadastrarEndereco(endereco) {
 
 export async function listarEndCliente() {
     const comando =
-    `SELECT tb_endereco.id_endereco     as IdEndereco,
-            tb_cliente.id_cliente       as IdCliente,
-                       nm_cliente	    as Cliente,
-                       nm_logradouro    as Logradouro,
-                       ds_num_casa      as Numero,
-                       ds_complemento   as Complemento,
-                       ds_cep           as CEP,
-                       ds_bairro        as Bairro,
-                       ds_cidade        as Cidade,
-                       ds_estado        as Estado
+    `SELECT tb_endereco.id_endereco     as enderecoId,
+            tb_cliente.id_cliente       as clienteId,
+                       nm_cliente	    as cliente,
+                       nm_logradouro    as logradouro,
+                       ds_num_casa      as numero,
+                       ds_complemento   as complemento,
+                       ds_cep           as cep,
+                       ds_bairro        as bairro,
+                       ds_cidade        as cidade,
+                       ds_estado        as estado
                 FROM tb_endereco
                     INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_endereco.id_cliente
-                        ORDER BY IdCliente`
+                        ORDER BY clienteId`
 
     const [resposta] = await conexao.query(comando);
     return resposta;

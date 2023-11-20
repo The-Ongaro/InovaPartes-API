@@ -12,13 +12,13 @@ export async function inserirItemCarrinho(carrinho) {
 
 export async function listarItensCarrinho(id) {
     const comando =
-    `SELECT tb_carrinho.id_carrinho		as CarrinhoID,
-            tb_cliente.id_cliente		as ClienteID,
-            tb_produto.id_produto		as ProdutoID,
-            tb_produto.nm_produto		as ProdutoNome,
-            tb_produto.ds_marca			as ProdutoMarca,
-            tb_produto.vl_valor			as ProdutoValor,
-            qtd_produto					as Quantidade
+    `SELECT tb_carrinho.id_carrinho		as carrinhoId,
+            tb_cliente.id_cliente		as clienteId,
+            tb_produto.id_produto		as produtoId,
+            tb_produto.nm_produto		as produtoNome,
+            tb_produto.ds_marca			as produtoMarca,
+            tb_produto.vl_valor			as produtoValor,
+            qtd_produto					as quantidade
         FROM tb_carrinho
             INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_carrinho.id_cliente
             INNER JOIN tb_produto ON tb_produto.id_produto = tb_carrinho.id_produto

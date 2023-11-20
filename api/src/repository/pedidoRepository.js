@@ -13,19 +13,19 @@ export async function cadastrarPedido(pedidos) {
 
 export async function listarPedidos() {
     const comando =
-    `SELECT tb_pedido.id_pedido                 as PedidoID,
-            tb_produto.id_produto 				as ProdutoID,
-            tb_cliente.nm_cliente               as Cliente,
-                       nm_produto				as Produto,
-                       ds_marca 				as Marca,
-             tb_cartao.id_cartao 				as Cartao,
-                       nm_titular				as Titular,
-           tb_endereco.id_endereco 				as Endereco,
-                       nm_logradouro			as Logradouro,
-                       ds_cidade				as Cidade,
-                       ds_estado				as Estado,
-             tb_pedido.nr_quantidade 			as Quantidade,
-                       ds_status 				as StatusPedido
+    `SELECT tb_pedido.id_pedido                 as pedidoId,
+            tb_produto.id_produto 				as produtoId,
+            tb_cliente.nm_cliente               as cliente,
+                       nm_produto				as produto,
+                       ds_marca 				as marca,
+             tb_cartao.id_cartao 				as cartao,
+                       nm_titular				as titular,
+           tb_endereco.id_endereco 				as endereco,
+                       nm_logradouro			as logradouro,
+                       ds_cidade				as cidade,
+                       ds_estado				as estado,
+             tb_pedido.nr_quantidade 			as quantidade,
+                       ds_status 				as statusPedido
                 FROM tb_pedido
                     INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
                         INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto
@@ -39,19 +39,19 @@ export async function listarPedidos() {
 
 export async function listarStatusPedidos(status) {
     const comando = 
-    `SELECT tb_pedido.id_pedido                 as IDPedido,
-            tb_produto.id_produto 				as ProdutoID,
-            tb_cliente.id_cliente               as ClienteID,
-                       nm_produto				as ProdutoNome,
-             tb_cartao.id_cartao 				as Cartao,
-                       nm_titular				as Titular,
-           tb_endereco.id_endereco 				as Endereco,
-                       nm_logradouro			as Logradouro,
-                       ds_cep					as CEP,
-                       ds_cidade				as Cidade,
-                       ds_estado				as Estado,
-             tb_pedido.nr_quantidade 			as Quantidade,
-                       ds_status 				as StatusPedido
+    `SELECT tb_pedido.id_pedido                 as pedidoId,
+            tb_produto.id_produto 				as produtoId,
+            tb_cliente.id_cliente               as clienteId,
+                       nm_produto				as produtoNome,
+             tb_cartao.id_cartao 				as cartao,
+                       nm_titular				as titular,
+           tb_endereco.id_endereco 				as endereco,
+                       nm_logradouro			as logradouro,
+                       ds_cep					as cep,
+                       ds_cidade				as cidade,
+                       ds_estado				as estado,
+             tb_pedido.nr_quantidade 			as quantidade,
+                       ds_status 				as statusPedido
                             FROM tb_pedido
                                 INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_pedido.id_cliente
                                     INNER JOIN tb_produto ON tb_produto.id_produto = tb_pedido.id_produto

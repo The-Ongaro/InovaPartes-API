@@ -37,14 +37,28 @@
         "senha": "mnb@456"  
     }  
 
+    RETORNA: 
+    STATUS: 200 OK
+
+
+
 (4) LOGIN ADM
     VERBO: POST         CAMINHO: http://localhost:5011/adm/login
 
     O ADMIN PODE REALIZAR O LOGIN  COM O E-MAIL OU CPF, MAS A SENHA É OBRIGATÓRIA.
     {
-        "email": || "cpf":
-        "senha":
+        "email": ""|| "cpf": ""
+        "senha": ""
     }  
+
+    RETORNA:
+
+    {
+        "id": 1,
+        "admin": "Catarina",
+        "email": "catarina@gmail.com",
+        "cpf": "123456789"
+    }
 
 (5) BUSCAR POR NOME OU CPF
     VERBO: GET          CAMINHO: http://localhost:5011/adm/busca?nome=
@@ -58,4 +72,7 @@
 
 (7) DELETAR ADM
     VERBO: DELETE       CAMINHO: http://localhost:5011/adm/:id => ID DO ADM
+
+    RETORNA:
+    STATUS: 200 OK
 

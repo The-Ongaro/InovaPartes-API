@@ -22,13 +22,12 @@ export async function alterarImgCliente(imagem, id) {
 
 export async function loginCliente(cpf, email, senha) {
     const comando = 
-    `SELECT id_cliente 	as Id,
-            nm_cliente 	as Cliente,
-            ds_email 	as Email,
-            ds_cpf      as CPF
+    `SELECT id_cliente 	as id,
+            nm_cliente 	as cliente,
+            ds_email 	as email,
+            ds_cpf      as cpf
 	            FROM tb_cliente
-		            WHERE ds_email     = ? 
-			             AND ds_senha  = ?`
+		            WHERE (ds_cpf = ? OR ds_email = ?) AND ds_senha  = ?`
 
     const [resposta] = await conexao.query(comando, [cpf, email, senha]);
     return resposta[0];
@@ -36,12 +35,12 @@ export async function loginCliente(cpf, email, senha) {
 
 export async function listarclientes() {
     const comando = 
-    `SELECT id_cliente      as Id,
-            nm_cliente      as Cliente,
-            ds_cpf	        as CPF,
-            ds_telefone     as Telefone,
-            ds_email		as Email,
-            img_cliente     as Perfil
+    `SELECT id_cliente      as id,
+            nm_cliente      as cliente,
+            ds_cpf	        as cpf,
+            ds_telefone     as telefone,
+            ds_email		as email,
+            img_cliente     as perfil
         FROM tb_cliente`
 
     const [resposta] = await conexao.query(comando);
@@ -50,12 +49,12 @@ export async function listarclientes() {
 
 export async function buscarPorNomeCpf(cpf, nome) {
     const comando = 
-    `SELECT id_cliente      as Id,
-            nm_cliente      as Cliente,
-            ds_cpf          as CPF,
-            ds_telefone     as Telefone,
-            ds_email        as Email,
-            img_cliente     as Perfil
+    `SELECT id_cliente      as id,
+            nm_cliente      as cliente,
+            ds_cpf          as cpf,
+            ds_telefone     as telefone,
+            ds_email        as email,
+            img_cliente     as perfil
                 FROM tb_cliente
                     WHERE ds_cpf = ?
                        OR nm_cliente LIKE ?`
@@ -66,7 +65,7 @@ export async function buscarPorNomeCpf(cpf, nome) {
 
 export async function buscarPorEmail(email) {
     const comando =
-    `SELECT ds_email    as Email
+    `SELECT ds_email    as email
         FROM tb_cliente
             WHERE ds_email = ?`
 

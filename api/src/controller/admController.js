@@ -109,14 +109,9 @@ server.put('/adm/:id', async (req, resp) => {
 
 server.post('/adm/login', async (req, resp) => {
     try {
+        const cpf = req.body.cpf
         const {email, senha} = req.body;
-        const resposta = await loginAdm(email, senha);
-
-        if(!email)
-            throw new Error('Preencha o campo e-mail.');
-
-        if(!senha)
-            throw new Error('Preencha o campo senha.');
+        const resposta = await loginAdm(cpf, email, senha);
 
         if(!resposta)
             throw new Error('Administrador inválido.');
@@ -152,7 +147,7 @@ server.get('/adm/busca', async (req, resp) => {
         const resposta = await buscarPorCpfNome(cpf, nome);
 
         if(resposta.length === 0)
-            throw new Error('Busca por administrador');
+            throw new Error('Administrador inválido.');
 
         resp.send(resposta);
 
