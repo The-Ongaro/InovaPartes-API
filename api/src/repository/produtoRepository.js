@@ -11,6 +11,18 @@ export async function cadastrarProdutos(produto) {
     return produto;
 }
 
+
+export async function imagemProduto(imagem, id) {
+    const comando =
+    `UPDATE tb_produto
+        SET ds_imagem   = ?
+            WHERE id_produto = ?`
+    
+    const [resposta] = await conexao.query(comando, [imagem, id]);
+    return resposta.affectedRows;
+} 
+
+
 export async function listarProdutos() {
     const comando =
     `SELECT 		 id_produto		as id, 
@@ -22,7 +34,8 @@ export async function listarProdutos() {
                      ds_promocao	as promocao,
                      vl_valor		as valor,
                      ds_detalhes	as detalhes,
-                     nr_quantidade	as quantidade
+                     nr_quantidade	as quantidade,
+                     ds_imagem      as imagem
                  FROM tb_produto
                     INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
                         ORDER BY id`

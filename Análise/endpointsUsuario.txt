@@ -28,6 +28,9 @@
     VERBO: PUT          CAMINHO: http://localhost:5011/usuario/:id/perfil => ID DO USUARIO
     FILES: 'perfil'
 
+    RETORNA:
+    STATUS: 200 OK
+
 (3) LOGIN USUARIO
     VERBO: POST         CAMINHO: http://localhost:5011/usuario/login
 

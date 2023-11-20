@@ -163,12 +163,12 @@ SELECT nm_cliente	as Nome,
 	 		OR id_cliente = ?;
         
 -- LOGIN CLIENTE
-SELECT id_cliente 	as ID,
-	   nm_cliente 	as Nome,
-	   ds_email 	as Email
-	FROM tb_cliente
-		WHERE ds_email 		= ?
-			AND ds_senha 	= ?;
+SELECT id_cliente 		as id,
+        nm_cliente	    as cliente,
+        ds_email    	as email,
+        ds_cpf      	as cpf
+            FROM tb_cliente
+            	WHERE (ds_cpf = ? OR ds_email = ?) AND ds_senha = ?
             
 -- ALTERAR INFO CLIENTE
 UPDATE tb_cliente

@@ -30,6 +30,14 @@
     }
 
 
+(1.1) INSERIR IMAGEM DO PRODUTO
+    VERBO: PUT          CAMINHO: http://localhost:5011/produto/:id/capa => ID DO PRODUTO
+    FILES: 'capa'
+
+    RETORNA: 
+    STATUS: 200 OK
+
+
 (2) LISTAR TODOS OS PRODUTOS
     VERBO: GET        CAMINHO: http://localhost:5011/produto
 
@@ -93,40 +101,3 @@
         }
     
     
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
--- ENDPOINTS DA tb_img_produto --
--- TABELA IMAGEM DOS PRODUTOS --
-(1) ADICIONAR IMAGEM
-    VERBO: POST         CAMINHO: http://localhost:5011/imagem
-
-    {
-        "produto": 1, => ID DO PRODUTO
-        "imagem": "" => PASSA VAZIO.
-    }
-
-(2) ALTERAR IMAGEM (PRESTA ATENÇÃO AQUI!)
-    VERBO: put          CAMINHO: http://localhost:5011/imagem/:id => ESSE ID É O id_img_produto QUE VOCÊ CRIOU ANTERIORMENTE.
-    FILES: 'capa'
-
-
-(3) LISTAR AS IMAGENS (NÃO SABIA SE IA QUERER OU NÃO, AI EU FIZ)
-    VERBO: GET          CAMINHO: http://localhost:5011/imagem
-
-(4) LISTAR IMAGEM COM A INFORMAÇÃO DO PRODUTO JUNTO (FAZ O TESTE DE PASSAR ESSE ENDPOINT NA TELA DE INFORMAÇÕES DO PRODUTO)
-    VERBO: GET          CAMINHO: http://localhost:5011/imagem/:id => ID DO PRODUTO QUE DESEJA, MAS A IMAGEM TEM QUE SER ADIONADA ANTES, SE NÃO DA ERRADO.
-
-    E ASSIM RETORNA A BRINCADEIRA:
-    
-        {
-            "Nome": "FT400",
-            "Marca": "FUELTECH",
-            "Modelo": "EXEMPLOII",
-            "Disponivel": true,
-            "Promocao": "EXEMPLOII",
-            "Valor": "5900.00",
-            "Detalhes": "EXEMPLOII",
-            "Quantidade": 1,
-            "Imagem": "storage\\imgProdutos\\f1534cc3dd8880824e1c348dd78df6c6"
-        }
