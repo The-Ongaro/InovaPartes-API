@@ -1,4 +1,4 @@
-import { alterarEndereco, cadastrarEndereco, deletarEnd, listarEndCliente } from '../repository/enderecoRepository.js';
+import { alterarEndereco, cadastrarEndereco, deletarEnd, listarEndCliente, listarEndClienteId } from '../repository/enderecoRepository.js';
 
 import { Router } from 'express';
 const server = Router();
@@ -47,6 +47,23 @@ server.get('/endereco', async (req, resp) => {
 
         if(dados.length === 0)
             throw new Error('Nenhum endereço cadastrado.');
+
+        resp.send(dados);
+
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+})
+
+server.get('/endereco/:id', async (req, resp) => {
+    try {
+        const {id} = req.params;
+        const dados = await listarEndClienteId(id);
+
+        if(dados.length === 0)
+            throw new Error('Não há nenhum endereço cadastrado relacionado a esse cliente.');
 
         resp.send(dados);
 

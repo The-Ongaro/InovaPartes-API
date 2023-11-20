@@ -31,6 +31,26 @@ export async function listarEndCliente() {
     return resposta;
 }
 
+export async function listarEndClienteId(id) {
+    const comando =
+    `SELECT tb_endereco.id_endereco     as enderecoId,
+            tb_cliente.id_cliente       as clienteId,
+               nm_cliente	            as cliente,
+               nm_logradouro            as logradouro,
+               ds_num_casa              as numero,
+               ds_complemento           as complemento,
+               ds_cep                   as cep,
+               ds_bairro                as bairro,
+               ds_cidade                as cidade,
+               ds_estado                as estado
+        FROM tb_endereco
+            INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_endereco.id_cliente
+                WHERE tb_cliente.id_cliente = ?`
+
+    const [resposta] = await conexao.query(comando, [id]);
+    return resposta;
+}
+
 export async function alterarEndereco(id, endereco) {
     const comando =
     `UPDATE tb_endereco
