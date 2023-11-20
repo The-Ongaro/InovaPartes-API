@@ -18,6 +18,7 @@ ds_promocao 		VARCHAR(200) NOT NULL,
 vl_valor 			DECIMAL(6,2) NOT NULL,
 ds_detalhes 		VARCHAR(200) NOT NULL,
 nr_quantidade 		INT NOT NULL,
+ds_imagem           VARCHAR(800),
 FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria) ON DELETE CASCADE
 );
 
