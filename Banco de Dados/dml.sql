@@ -349,3 +349,46 @@ DELETE FROM tb_carrinho
 -- DELETAR TODOS OS ITENS DO CARRINHO
 DELETE FROM tb_carrinho
 	WHERE id_cliente = ?;
+
+-- TABELA COMENTARIOS --
+-- INSERIR UM COMENTARIO --
+INSERT INTO tb_comentarios (id_produto, id_cliente, ds_comentario)
+					VALUES (?, ?, ?);
+     
+-- LISTAR TODOS OS COMENTARIOS --  
+SELECT tb_produto.id_produto		as produtoId,
+	   tb_cliente.id_cliente		as clienteId,
+				  nm_cliente		as cliente,
+				  ds_comentario		as comentario
+	FROM tb_comentarios
+		INNER JOIN tb_produto ON tb_produto.id_produto = tb_comentarios.id_produto
+        INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_comentarios.id_cliente
+			WHERE tb_cliente.id_cliente = ?;
+            
+-- LISTAR OS COMENTARIOS DE UM DETERMINADO PRODUTO --           
+SELECT tb_produto.id_produto		as produtoId,
+				  nm_produto		as produto,
+	   tb_cliente.id_cliente		as clienteId,
+				  nm_cliente		as cliente,
+				  ds_comentario		as comentario
+	FROM tb_comentarios
+		INNER JOIN tb_produto ON tb_produto.id_produto = tb_comentarios.id_produto
+        INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_comentarios.id_cliente
+			WHERE tb_produto.id_produto = ?;
+
+-- LISTAR OS COMENTARIOS DE UM DETERMINADO CLIENTE --
+SELECT tb_produto.id_produto		as produtoId,
+	   tb_cliente.id_cliente		as clienteId,
+				  ds_comentario		as comentario
+	FROM tb_comentarios
+		INNER JOIN tb_produto ON tb_produto.id_produto = tb_comentarios.id_produto
+        INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_comentarios.id_cliente;
+        
+-- ALTERAR COMENTARIOS --
+UPDATE tb_comentarios
+	SET ds_comentario = ?
+		WHERE id_cliente = ?;
+
+-- DELETAR COMENTARIOS --  
+DELETE FROM tb_comentarios
+	WHERE id_cliente = ?;

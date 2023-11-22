@@ -102,3 +102,12 @@ qtd_produto			INT,
 FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente) ON DELETE CASCADE,
 FOREIGN KEY (id_produto) REFERENCES tb_produto (id_produto) ON DELETE CASCADE
 );
+
+CREATE TABLE tb_comentarios(
+id_comentario		INT PRIMARY KEY AUTO_INCREMENT,
+id_produto			INT,
+id_cliente			INT,
+ds_comentario		VARCHAR(800),
+FOREIGN KEY (id_produto) REFERENCES tb_produto (id_produto),
+FOREIGN KEY (id_cliente) REFERENCES tb_cliente (id_cliente)
+);

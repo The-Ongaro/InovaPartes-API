@@ -1,0 +1,63 @@
+-- ENDPOINTS DA tb_comentarios --
+
+(1) INSERIR UM COMENTARIO 
+    VERBO: POST         CAMINHO: http://localhost:5011/comentario
+
+    {
+        "produto": 1,
+        "cliente": 1,
+        "comentario": "Não recebi o meu produto!"
+    }
+
+    RETORNA:
+
+    {
+        "produto": 1,
+        "cliente": 1,
+        "comentario": "Não recebi o meu produto!",
+        "id": 5
+    }
+
+(2) EDITAR COMENTARIO
+    VERBO: PUT          CAMINHO: http://localhost:5011/comentario/:id => ID DO CLIENTE
+
+    {
+        "comentario": ""
+    }
+
+    RETORNA: 
+    STATUS: 200 OK
+
+(3) LISTAR TODOS OS COMENTARIOS
+    VERBO: GET          CAMINHO: http://localhost:5011/comentario
+
+    RETORNA:
+
+    {
+        "produtoId": 1,
+        "clienteId": 1,
+        "comentario": "Não recebi o meu produto!"
+    }
+
+(3.1) LISTAR TODOS COMENTARIOS DE UMA DETERMINADA PEÇA
+    VERBO: GET          CAMINHO: http://localhost:5011/comentario/:id/produto => ID DO PRODUTO
+
+
+
+(3.2) LISTAR COMENTARIO DE UM DETERMINADO USUARIO 
+    VERBO: GET          CAMINHO: http://localhost:5011/comentario/:id/usuario => ID DO CLIENTE
+
+    RETORNA:
+
+    {
+        "produtoId": 1,
+        "clienteId": 1,
+        "cliente": "Catarina",
+        "comentario": "Não recebi o meu produto!"
+    }
+
+(4) DELETAR COMENTARIO
+    VERBO: DELETE       CAMINHO: http://localhost:5011/comentario/:id => ID DO CLIENTE
+
+    RETORNA:
+    STATUS: 200 OK
