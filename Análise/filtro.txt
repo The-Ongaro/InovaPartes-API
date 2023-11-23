@@ -1,0 +1,66 @@
+--- ARQUIVO REFERENTE AOS FILTROS, MENOR E MAIOR VALOR ---
+
+(1) MENOR VALOR 
+    VERBO:GET          CAMINHO:http://localhost:5011/filtro/menor?valor=
+
+    RETORNO: 
+    (NESSE CASO NÃO HAVIA NENHUM VALOR MENOR DO QUE FOI INDICADO NA ROTA)
+
+    {
+        "erro": "Não há produtos referente a esse valor."
+    }
+
+(2) MAIOR VALOR
+    VERBO: GET          CAMINHO:http://localhost:5011/filtro/maior?valor=
+
+    RETORNO:
+    [
+        {
+            "id": 1,
+            "categoria": "Originais - Manutenção Preventiva",
+            "produto": "aaaaaaaaaaaa",
+            "marca": "aaaaaaaaaaa",
+            "modelo": "aaaaaaaaaaa",
+            "valor": "200.00",
+            "detalhes": "aaaaaaaa",
+            "quantidade": 5,
+            "disponivel": true,
+            "promocao": "aaaaaaaa"
+        },
+        {
+            "id": 2,
+            "categoria": "Originais - Manutenção Preventiva",
+            "produto": "BBBBBBBBBBBB",
+            "marca": "BBBBBBBBBBBB",
+            "modelo": "BBBBBBB",
+            "valor": "200.00",
+            "detalhes": "BBBBBBBBBB",
+            "quantidade": 5,
+            "disponivel": false,
+            "promocao": "BBBBBBB"
+        },
+        {
+            "id": 3,
+            "categoria": "Originais - Manutenção Preventiva",
+            "produto": "Turbina Chevette",
+            "marca": "Bosh",
+            "modelo": "2.1",
+            "valor": "2000.00",
+            "detalhes": "ótima turbina",
+            "quantidade": 2,
+            "disponivel": true,
+            "promocao": "Sem promoção"
+        },
+        {
+            "id": 4,
+            "categoria": "Originais - Manutenção Preventiva",
+            "produto": "Kit Turbo para carros injetados",
+            "marca": "Bosh",
+            "modelo": "Completo",
+            "valor": "5000.00",
+            "detalhes": "Kit completo com todos os itens necessários.",
+            "quantidade": 10,
+            "disponivel": true,
+            "promocao": "Até dia 25/11 ou enquanto durarem nossos estoques."
+        }
+    ]

@@ -148,6 +148,48 @@ export async function listarCategoria() {
 }
 
 
+export async function filtroValorMaior(valor) {
+    const comando =
+    `SELECT  id_produto         as id,
+             ds_categoria	    as categoria,
+             nm_produto		    as produto,
+             ds_marca		    as marca,
+             ds_modelo		    as modelo,
+             vl_valor		    as valor,
+             ds_detalhes		as detalhes,
+             nr_quantidade	    as quantidade,
+             bt_disponivel	    as disponivel,
+             ds_promocao		as promocao
+                    FROM tb_produto
+                        INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
+                            WHERE vl_valor > ?`
+
+    const [resposta] = await conexao.query(comando, [valor])
+    return resposta;
+}
+
+
+export async function filtroValorMenor(valor) {
+    const comando =
+    `SELECT  id_produto         as id,
+             ds_categoria	    as categoria,
+             nm_produto		    as produto,
+             ds_marca		    as marca,
+             ds_modelo		    as modelo,
+             vl_valor		    as valor,
+             ds_detalhes		as detalhes,
+             nr_quantidade	    as quantidade,
+             bt_disponivel	    as disponivel,
+             ds_promocao		as promocao
+                    FROM tb_produto
+                        INNER JOIN tb_categoria ON tb_categoria.id_categoria = tb_produto.id_categoria
+                            WHERE vl_valor < ?`
+
+    const [resposta] = await conexao.query(comando, [valor])
+    return resposta;
+}
+
+
 export async function inserirImg(imagem) {
     const comando = 
     `INSERT INTO tb_img_produto (id_produto, ds_img)
